@@ -7,10 +7,29 @@ def get_arxiv_categories() -> list[str]:
 
     categories = [
         "cs.AI", # AI
-        "cs.AR", # Hardware
+        #"cs.AR", # Hardware - but mostly very custom
         "cs.CE", # Computational engineering
-        
-
+        "cs.CL", # NLP
+        #"cs.CV", # Computer Vision - disabling for now
+        "cs.DB", # Database
+        "cs.DC", # Distributed, parallel, and cluster computing
+        "cs.GL", # General literature - surveys, future trends
+        "cs.GT", # Game theory
+        "cs.HC", # Human-computer interaction
+        "cs.IR", # Information retrieval
+        "cs.LG", # Machine learning
+        "cs.MA", # Multiagent systems
+        "cs.NE", # Neural and evolutionary computing
+        "econ.GN", # General economics
+        "math.ST", # Statistics
+        "q-fin.CP", # Computational finance
+        "q-fin.GN", # General finance
+        "q-fin.MF", # Mathematical finance
+        "q-fin.PM", # Portfolio management
+        "q-fin.RM", # Risk management
+        "q-fin.ST", # Statistical finance
+        "q-fin.TR", # Trading and market microstructure
+        "stat.ML", # Machine learning - Statistics
     ]
     
     return categories
