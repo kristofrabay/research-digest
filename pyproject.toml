@@ -13,5 +13,6 @@ dependencies = [
     "ipykernel>=7.1.0",
     "ipython>=9.8.0",
     "openai>=2.14.0",
+    "openai-agents>=0.6.4",
     "tqdm>=4.67.1",
 ]
