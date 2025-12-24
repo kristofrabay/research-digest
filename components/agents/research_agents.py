@@ -14,8 +14,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Clients
-openai_client = AsyncOpenAI()
-anthropic_client = AsyncAnthropic()
+openai_client = AsyncOpenAI(timeout=60*20, max_retries=3)
+anthropic_client = AsyncAnthropic(timeout=60*20, max_retries=3)
 
 # Logging
 import logging
@@ -25,15 +25,18 @@ logger = logging.getLogger(__name__)
 
 async def search_with_openai(
     focus_key: str, 
+    focus_description: str,
     model: str = "gpt-5.2", 
     reasoning_effort: str = "xhigh"
 ) -> ResearchResults:
+
+    logger.info(f"Running OpenAI research agent for focus area: {focus_key}")
 
     response = await openai_client.responses.parse(
         model=model,
         reasoning={"effort": reasoning_effort},
         input=[
-            {"role": "system", "content": get_research_system_prompt(focus_key)},
+            {"role": "system", "content": get_research_system_prompt(focus_key, focus_description)},
             {"role": "user", "content": get_research_user_prompt()},
         ],
         text_format=ResearchResults,
@@ -49,9 +52,12 @@ async def search_with_openai(
 
 async def search_with_anthropic(
     focus_key: str, 
+    focus_description: str,
     model: str = "claude-opus-4-5-20251101",
     reasoning_budget: int = 15_000
 ) -> ResearchResults:
+
+    logger.info(f"Running Anthropic research agent for focus area: {focus_key}")
 
     response = await anthropic_client.beta.messages.parse(
         model=model,
@@ -61,23 +67,29 @@ async def search_with_anthropic(
             "budget_tokens": reasoning_budget
         },
         betas=["structured-outputs-2025-11-13", "web-search-2025-03-05"],
-        system=get_research_system_prompt(focus_key),
+        system=get_research_system_prompt(focus_key, focus_description),
         messages=[{"role": "user", "content": get_research_user_prompt()}],
-        tools=[{"type": "web_search", "name": "web_search"}],
+        tools=[
+            {
+                "type": "web_search_20250305",
+                "name": "web_search",
+                "max_uses": 50
+            }
+        ],
         output_format=ResearchResults,
     )
     return response.parsed_output
 
 
-async def run_mixed_research_agents() -> dict[str, ResearchResults]:
+async def run_mixed_research_agents(focus_areas: dict[str, str]) -> dict[str, ResearchResults]:
     """Run both OpenAI and Anthropic agents for all focus areas."""
     all_tasks = []
     task_info = []
     
-    for key in FOCUS_AREAS:
-        all_tasks.append(search_with_openai(key))
+    for key in focus_areas:
+        all_tasks.append(search_with_openai(key, focus_areas[key]))
         task_info.append((key, "openai"))
-        all_tasks.append(search_with_anthropic(key))
+        all_tasks.append(search_with_anthropic(key, focus_areas[key]))
         task_info.append((key, "anthropic"))
     
     logger.info(f"Running {len(all_tasks)} tasks")
@@ -89,6 +101,6 @@ async def run_mixed_research_agents() -> dict[str, ResearchResults]:
     
     results = {}
     for (key, provider), result in zip(task_info, results_list):
-        results[f"{key}_{provider}"] = result
+        results[f"{key} --- {provider}"] = result
     
     return results

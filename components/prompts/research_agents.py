@@ -4,30 +4,16 @@ from datetime import datetime
 # FOCUS AREAS - Dict for async agent runs (one agent per key)
 # =============================================================================
 FOCUS_AREAS: dict[str, str] = {
-    "reasoning_and_planning": """
-        Reasoning LLMs, chain-of-thought, inference-time compute, self-reflection,
-        planning with LLMs, MCTS (Monte Carlo Tree Search) for language models, test-time scaling, hallucination reduction and detection, grounding, factuality
-    """,
-    "agents_and_finance": """
-        Multi-agent systems for finance, private equity, venture capital,
-        due diligence automation, investment opportunity analysis, deal sourcing,
-        portfolio monitoring, agents for data analysis, financial report generation,
-        PitchBook, AlphaSense, Preqin, CapIQ, Bloomberg integrations
-    """,
-    "agent_infrastructure": """
-        MCP servers, tool use, agent memory, agent frameworks,
-        LangChain, LlamaIndex, OpenAI Agents SDK, Anthropic Agents SDK, Google SDK,
-        function calling, structured outputs, agent orchestration
-    """,
-    "retrieval_and_embeddings": """
-        Vector databases, embeddings (new efficient models), rerankers,
-        RAG architectures, RAG alternatives, hybrid search, chunking strategies
-    """,
-    "multimodal_and_generation": """
-        Vision-language models, multimodal RAG, document understanding,
-        PDF parsing, chart/table extraction, report generation with LLMs,
-        GPT-4V, Claude vision, Gemini, structured document output
-    """,
+
+    "reasoning_and_planning": "Reasoning LLMs, chain-of-thought, inference-time compute, self-reflection, planning with LLMs, MCTS (Monte Carlo Tree Search) for language models, test-time scaling, hallucination reduction and detection, grounding, factuality",
+
+    "agents_and_finance": "Multi-agent systems for finance, private equity, venture capital, due diligence automation, investment opportunity analysis, deal sourcing, portfolio monitoring, agents for data analysis, financial report generation, PitchBook, AlphaSense, Preqin, CapIQ, Bloomberg integrations",
+    
+    "agent_infrastructure": "MCP servers, tool use, agent memory, agent frameworks, LangChain, LlamaIndex, OpenAI Agents SDK, Anthropic Agents SDK, Google SDK, function calling, structured outputs, agent orchestration",
+
+    "retrieval_and_embeddings": "Vector databases, embeddings (new efficient models), rerankers, RAG architectures, RAG alternatives, hybrid search, chunking strategies",
+    
+    "multimodal_and_generation": "Vision-language models, multimodal RAG, document understanding, PDF parsing, chart/table extraction, report generation with LLMs, GPT-4V, Claude vision, Gemini, structured document output",
 }
 
 TRUSTED_SOURCES = """
@@ -45,10 +31,9 @@ Lilian Weng's blog, Sebastian Raschka, Jay Alammar.
 # =============================================================================
 # MAIN RESEARCH PROMPT
 # =============================================================================
-def get_research_system_prompt(focus_key: str) -> str:
+def get_research_system_prompt(focus_key: str, focus_description: str) -> str:
     """Generate research prompt for a specific focus area."""
     today = datetime.now().strftime("%A, %B %d, %Y")
-    focus_area = FOCUS_AREAS[focus_key].strip()
     
     return f"""<context>
 Today's date is {today}.
@@ -63,10 +48,10 @@ Return QUANTITY and QUALITY. Miss something important, and another agent will fi
 </objective>
 
 <focus_area>
-Your assigned focus: {focus_key.replace("_", " ").title()}
+Your assigned focus: {focus_key}
 
 Search aggressively for content related to:
-{focus_area}
+{focus_description}
 </focus_area>
 
 <trusted_sources>
