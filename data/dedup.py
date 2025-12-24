@@ -12,10 +12,9 @@ class ResearchDeduplicator:
     def __init__(
         self,
         main_csv_path: str | Path = "data/research_items.csv",
-        skipped_csv_path: str | Path = "data/skipped_items.csv",
     ):
         self.main_csv_path = Path(main_csv_path)
-        self.skipped_csv_path = Path(skipped_csv_path)
+        self.skipped_csv_path = Path(str(main_csv_path).replace("research_items", "skipped_items"))
         
         self.columns = [
             "focus_area", "provider", "url", "title", 
