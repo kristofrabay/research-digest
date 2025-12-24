@@ -31,6 +31,16 @@ class ResearchDeduplicator:
             logger.info(f"No existing CSV found at {self.main_csv_path}, starting fresh")
             return pd.DataFrame(columns=self.columns)
     
+    def load_existing_skipped(self) -> pd.DataFrame:
+        """Load existing skipped items CSV, or create empty DataFrame if not exists."""
+        if self.skipped_csv_path.exists():
+            df = pd.read_csv(self.skipped_csv_path)
+            logger.info(f"Loaded {len(df)} existing skipped items from {self.skipped_csv_path}")
+            return df
+        else:
+            logger.info(f"No existing skipped CSV found at {self.skipped_csv_path}")
+            return pd.DataFrame(columns=self.columns + ["skipped_at"])
+    
     def deduplicate(
         self, 
         new_df: pd.DataFrame,
@@ -70,17 +80,29 @@ class ResearchDeduplicator:
         updated_df.to_csv(self.main_csv_path, index=False)
         logger.info(f"Saved {len(updated_df)} items to {self.main_csv_path}")
         
-        # Append skipped items to log (with timestamp)
+        # Append skipped items to log (with timestamp), but deduplicate first
         if len(skipped_df) > 0:
             skipped_df = skipped_df.copy()
+            
+            # Remove duplicates within the skipped_df itself first
+            skipped_df = skipped_df.drop_duplicates(subset=["url"], keep="first")
+            
             skipped_df["skipped_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             
-            if self.skipped_csv_path.exists():
-                existing_skipped = pd.read_csv(self.skipped_csv_path)
-                skipped_df = pd.concat([existing_skipped, skipped_df], ignore_index=True)
+            # Load existing skipped items and deduplicate by URL
+            existing_skipped = self.load_existing_skipped()
+            existing_skipped_urls = set(existing_skipped["url"].tolist()) if len(existing_skipped) > 0 else set()
             
-            skipped_df.to_csv(self.skipped_csv_path, index=False)
-            logger.info(f"Logged {len(skipped_df)} skipped items to {self.skipped_csv_path}")
+            # Only keep skipped items that haven't been logged before
+            is_new_skip = ~skipped_df["url"].isin(existing_skipped_urls)
+            new_skipped = skipped_df[is_new_skip].copy()
+            
+            if len(new_skipped) > 0:
+                combined_skipped = pd.concat([existing_skipped, new_skipped], ignore_index=True)
+                combined_skipped.to_csv(self.skipped_csv_path, index=False)
+                logger.info(f"Logged {len(new_skipped)} new skipped items to {self.skipped_csv_path}")
+            else:
+                logger.info(f"No new skipped items to log (all already in {self.skipped_csv_path})")
     
     def process(
         self, 
