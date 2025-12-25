@@ -9,7 +9,7 @@ FOCUS_AREAS: dict[str, str] = {
 
     "agents_and_finance": "Multi-agent systems for finance, private equity, venture capital, due diligence automation, investment opportunity analysis, deal sourcing, portfolio monitoring, agents for data analysis, financial report generation, PitchBook, AlphaSense, Preqin, CapIQ, Bloomberg integrations",
     
-    "agent_infrastructure": "MCP servers, tool use, agent memory, agent frameworks, LangChain, LlamaIndex, OpenAI Agents SDK, Anthropic Agents SDK, Google SDK, function calling, structured outputs, agent orchestration",
+    "agent_infrastructure": "MCP servers, tool use, agent memory, agentic memory, agent frameworks, LangChain, LlamaIndex, OpenAI Agents SDK, Anthropic Agents SDK, Google SDK, function calling, structured outputs, agent orchestration",
 
     "retrieval_and_embeddings": "Vector databases, embeddings (new efficient models), rerankers, RAG architectures, RAG alternatives, hybrid search, chunking strategies",
     
