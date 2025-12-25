@@ -116,7 +116,7 @@ async def search_with_exa(
     for r in result.results:
         # Optionally save raw content
         if content_saver is not None:
-            _, __ = content_saver.save_exa_result({
+            content_saver.save_exa_result({
                 "url": r.url,
                 "title": r.title,
                 "published_date": r.published_date,
@@ -124,7 +124,7 @@ async def search_with_exa(
                 "text": r.text,
                 "score": r.score,
             })
-            logger.info(f"Saved content for {r.url}")
+            #logger.info(f"Saved content for {r.url}")
         
         items.append(ResearchItem(
             url=r.url,
