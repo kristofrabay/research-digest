@@ -89,7 +89,6 @@ class ContentSaver:
         }
         self._save_index()
         
-        logger.info(f"Saved markdown: {file_path}")
         return file_path
     
     def save_arxiv_pdf(self, arxiv_url: str, title: str | None = None, abstract: str | None = None) -> Path:
