@@ -1,0 +1,264 @@
+# How AI Agents in Finance Are Transforming Financial Due Diligence: FA3STER
+
+**URL:** https://pathway.com/blog/ai-agents-finance-due-diligence
+**Published:** 2025-03-26T04:12:54.000Z
+
+---
+
+## Summary
+
+The webpage describes **FA3STER** (Financial Agentic Autonomous and Accurate System Through Evolving Retrieval Augmented Generation), which is an **Autonomous, Multi-Agent Real-Time RAG System** specifically designed to transform **Financial Due Diligence (FDD)**.
+
+Key aspects relevant to "agentic memory" in this context include:
+
+*   **Agentic RAG Architecture:** FA3STER uses a multi-agent system powered by LangGraph and specialized agents (Finance Agent, SQL Agent, Reasoning Agent, etc.) that collaborate, cross-check findings, and iterate to refine financial insights. This multi-agent interaction and refinement process serves as a form of dynamic, specialized memory for complex tasks.
+*   **Vertical Autonomous Layer:** This layer involves agents operating in iterative modes (Q&A Mode and Discussion Mode) where they refine findings and generate new investigative questions until consensus is reached, enhancing the accuracy and depth of the analysis—a key function of advanced memory systems.
+*   **Use Cases:** The system is explicitly tailored for **Financial Due Diligence (FDD)**, automating document analysis, accurately responding to complex financial queries, and generating summarized FDD reports and quick-look dashboards.
+*   **Functionality:** It supports both **Chat Mode** for interactive financial query resolution and **Report Generation Mode** for automated due diligence reports.
+
+In summary, the page details an agentic system (FA3STER) built using an Agentic RAG framework that provides sophisticated, iterative processing and specialized analysis capabilities for **financial due diligence use cases**.
+
+---
+
+## Full Content
+
+How AI Agents in Finance Are Transforming Financial Due Diligence: FA3STER | Pathway
+[framework](https://pathway.com/framework)
+[](https://pathway.com/)[62k](https://github.com/pathwaycom/)
+community
+# How AI Agents in Finance Are Transforming Financial Due Diligence: FA3STER
+Subscribe to the Blog
+![](https://d14l3brkh44201.cloudfront.net/assets/blog/thumbnails/ai-agents-finance-due-diligence-th.png?width=400)
+![Pathway Community avatar](https://d14l3brkh44201.cloudfront.net/assets/blog/avatars/pathway-community-av.png)Pathway Community
+·Published March 26, 2025·Updated March 26, 2025·0 min read
+Contents
+* [Introduction](#introduction)
+* [A Quick 3-Minute Overview of FA3STER –an Autonomous, Multi-Agent Real-Time RAG System](#a-quick-3-minute-overview-of-fa3ster-an-autonomous-multi-agent-real-time-rag-system)
+* [Why does it stand out ?](#why-does-it-stand-out)
+* [Solution Overview](#solution-overview)
+* [1. Intelligent Retrieval with Context-Aware Chunking](#_1-intelligent-retrieval-with-context-aware-chunking)
+* [2. Autonomous Post-Retrieval Processing](#_2-autonomous-post-retrieval-processing)
+* [3. The Vertical Autonomous Layer (The Game-Changer)](#_3-the-vertical-autonomous-layer-the-game-changer)
+* [4. Transparent and Interactive UI](#_4-transparent-and-interactive-ui)
+* [System Architecture](#system-architecture)
+* [Code Repository –Complete Setup &amp; Usage Guide](#code-repository-complete-setup-usage-guide)
+* [Pre-Retrieval and Retrieval](#pre-retrieval-and-retrieval)
+* [Post-Retrieval](#post-retrieval)
+* [1. Intelligent Document Retrieval](#_1-intelligent-document-retrieval)
+* [2. Smart Document Grading &amp; Routing](#_2-smart-document-grading-routing)
+* [3. Real-Time Web Search for External Insights](#_3-real-time-web-search-for-external-insights)
+* [4. Financial Data Interpretation &amp; Visualization](#_4-financial-data-interpretation-visualization)
+* [5. Fact-Checked Response Generation](#_5-fact-checked-response-generation)
+* [Vertical Autonomous Layer:](#vertical-autonomous-layer)
+* [Revolutionizing Due Diligence with Vertical Scaling](#revolutionizing-due-diligence-with-vertical-scaling)
+* [Key Components of the Autonomous Layer](#key-components-of-the-autonomous-layer)
+* [How FA3STER’s Autonomous Layer Works](#how-fa3sters-autonomous-layer-works)
+* [Results and Metrics](#results-and-metrics)
+* [Resilience to Error Handling:](#resilience-to-error-handling)
+* [Seamless User Experience with Dual-Mode Interface](#seamless-user-experience-with-dual-mode-interface)
+* [1. Chat Mode: Interactive Financial Query Resolution](#_1-chat-mode-interactive-financial-query-resolution)
+* [2. Report Generation Mode: Automated Due Diligence Reports](#_2-report-generation-mode-automated-due-diligence-reports)
+* [Responsible AI: Security, Compliance &amp; Transparency](#responsible-ai-security-compliance-transparency)
+* [Conclusion: Transforming Financial Due Diligence with FA3STER](#conclusion-transforming-financial-due-diligence-with-fa3ster)
+* [Authors:](#authors)
+Subscribe to the BlogA newsletter to learn more about what&#39;s latest in the world of GenAI and Realtime AI via Pathway.
+Share this article
+Table of Contents
+## [Introduction](#introduction)
+Financial due diligence represents a highly resource-intensive, time-consuming and painstakingly manual process, often extending over several weeks or months. This complexity arises from the need for exhaustive, detailed analysis and reasoning across financial datasets, which often require frequent updates.
+In our ambitious approach , we&#39;re harnessing**Pathway&#39;s dynamic capabilities**to develop a cutting-edge Agentic RAG (Retrieval-Augmented Generation) system. Our goal? To create a solution that autonomously retrieves, analyzes, and synthesizes information from diverse documents—solving real-world challenges efficiently.
+Our solution, designed around the core objectives outlined earlier, directly addresses the key pain points of financial due diligence (FDD). It is tailored to serve all of the stakeholders of FDD, from investors to analysts and lawyers, by automating document analysis, accurately responding to queries, and dynamically adapting to changing document datasets. Additionally, it generates summarized, concise FDD reports and quick-look dashboards for targeted firms, offering a strong starting point in the due diligence process. It can also be used independently to perform Q&amp;A on financial documents.
+### [A Quick 3-Minute Overview of FA3STER –an Autonomous, Multi-Agent Real-Time RAG System](#a-quick-3-minute-overview-of-fa3ster-an-autonomous-multi-agent-real-time-rag-system)
+![](https://i.ytimg.com/vi/g0-1A_97BiU/sddefault.jpg)
+## [Why does it stand out ?](#why-does-it-stand-out)
+While there are generic RAG-based systems available for Q&amp;A on documents, these have moderate accuracy and often suffer from high scope for error. Given the high stakes involved in FDD, these systems cannot be relied upon
+* **Real-World Application**: Our solution is not just an abstract RAG implementation—it is purpose-built to handle the complexities of financial due diligence (FDD).
+* **Versatile Functionality**: Beyond streamlining the FDD process, our solution can also act as an agentic RAG-based chatbot for financial documents, capable of answering complex queries related to financial documents.
+* **Innovative Architecture**: Our approach is not just about using RAG but refining it. This is validated by both theoretical intuitions and empirical results.
+* **Unmatched Offering**: The competitive landscape lacks a dedicated solution that combines all such aspects that parallel the comprehensive and innovative capabilities we deliver for our specific use case of enhancing the FDD process.## [Solution Overview](#solution-overview)
+**F**inancial**A**gentic**A**utonomous and**A**ccurate**S**ystem**T**hrough**E**volving (Dynamic)**R**etrieval Augmented Generation, orFA3STERFA^3STERFA3STERis designed to address the challenges of FDD.
+At the heart of FA3STER lies a sophisticated four-component architecture:
+### [1. Intelligent Retrieval with Context-Aware Chunking](#_1-intelligent-retrieval-with-context-aware-chunking)
+FA3STER enhances document parsing through an**Agentic Chunker**, ensuring contextually relevant information retrieval. Powered by Pathway’s real-time streaming and dynamic indexing, this phase improves accuracy while keeping data fresh.
+### [2. Autonomous Post-Retrieval Processing](#_2-autonomous-post-retrieval-processing)
+Our system goes beyond simple data retrieval by integrating**specialized agents**for finance, document grading, SQL querying, and data visualization. These agents intelligently analyze, cross-validate, and optimize workflows—minimizing errors and ensuring reliable insights.
+### [3. The Vertical Autonomous Layer (The Game-Changer)](#_3-the-vertical-autonomous-layer-the-game-changer)
+Rather than just stacking more tools, FA3STER introduces a self-improving network of interlinked agents that:
+* Collaborate, cross-check findings, and exchange knowledge
+* Iterate through multiple rounds to refine financial insights
+* Generate concise, actionable FDD reports and real-time dashboards### [4. Transparent and Interactive UI](#_4-transparent-and-interactive-ui)
+Users get a real-time agent workflow visualization, allowing complete transparency into how FA3STER processes financial documents. The interactive UI makes complex operations accessible, ensuring seamless user experience.
+## [System Architecture](#system-architecture)
+Our multi-agent RAG system ensures precision, seamless integration, and robust performance in financial analysis. It leverages Pathway’s Dynamic Indexing Pipeline, integrating Vector Store and Google Drive Connector for real-time data updates.
+Key components include:
+* **Agentic Chunker (GPT-4o-mini)**– Enhances document fragments for context-aware retrieval.
+* **Unstructured’s Parser &amp; OpenAI’s text-embedding-3-small**– Processes unstructured data and enables hybrid indexing with semantic search and metadata filtering.
+* **Cohere’s Re-ranker**– Optimizes complex query decomposition and ranking.
+* **LangGraph &amp; SELF-RAG Architecture**– Drives post-retrieval decision-making with specialized financial agents.
+* **Tavily Search &amp; Reasoning Agents**– Enrich data with external sources and generate insightful visualizations.### [Code Repository –Complete Setup &amp; Usage Guide](#code-repository-complete-setup-usage-guide)
+## [Pre-Retrieval and Retrieval](#pre-retrieval-and-retrieval)
+![](https://pathway.com/_ipx/w_2560/assets/content/blog/ai-agents-finance-due-diligence/Pre-retrival_Architecture.png)
+1. **Pathway’s Real-Time Streaming Framework**
+Pathway&#39;s Google Drive connector dynamically streamlines data ingestion into the RAG system, supporting both real-time updates and one-time imports.
+2. **Pre-Retrieval Workflow and Data Processing**
+Since the documents are mainly in pdf format, we need to have them converted to embeddings before using them for retrieval. For that we have to parse the document, chunk and embed it and finally store it in the vector store.
+* **Unstructured’s Parser**: Unstructured.io&#39;s parsing tools excel at extracting structured data from various financial document formats, including tables, lists, and key-value pairs.
+* **Agentic Chunker (GPT-4o-mini)**
+* Goes beyond standard segmentation by enriching document chunks with contextual metadata.
+* Enhances retrieval accuracy by incorporating semantic relationships across different document sections.
+* Addresses limitations of traditional retrieval methods by improving nuanced understanding and relevance ranking.
+* **OpenAI’s text-embedding-3-small**: OpenAI&#39;s text-embedding-3-small model generates vector representations of text, capturing semantic meaning.
+* **Pathway’s Vector Store**
+* Optimized for storing and retrieving embeddings, enabling efficient similarity search.
+* Supports dynamic updates, ensuring the database remains up to date as new financial data is ingested.
+* Implements Hybrid Indexing, combining:
+* Semantic relevance (vector embeddings).
+* Metadata-based filtering (e.g., company name, stock ticker, document date).
+* Provides scalability for large financial datasets.
+1. **Query Decomposer**: Breaks down complex financial queries into smaller subqueries, allowing retrieval of relevant documents from multiple perspectives.
+2. **Cohere Re-ranker**: Assigns a relevance score to each document by understanding the query&#39;s intent, ensuring that the most relevant knowledge base entries are prioritized in responses.## [Post-Retrieval](#post-retrieval)
+![](https://pathway.com/_ipx/w_2560/assets/content/blog/ai-agents-finance-due-diligence/Post-Retrival_Agentic_workflow.png)
+FA3STER’s post-retrieval phase transforms raw data into highly relevant financial insights using an Agentic-RAG framework powered by LangGraph. This hybrid system integrates specialized agents, ensuring accuracy, efficiency, and adaptability in financial due diligence.
+## [1. Intelligent Document Retrieval](#_1-intelligent-document-retrieval)
+The process begins by retrieving the most contextually relevant financial documents from the Pathway Vector Store. FA3STER enhances transparency by preserving metadata, ensuring users can track the source and reliability of retrieved data.
+## [2. Smart Document Grading &amp; Routing](#_2-smart-document-grading-routing)
+Retrieved documents undergo automated evaluation based on:
+* **Relevance &amp; Quality**– Ensuring only high-value data is processed.
+* **Content-Type Detection**– Routing subqueries based on document type:
+* Transform Query Agent –Refines unclear queries for better results.
+* SQL Agent –Extracts structured financial data from databases.
+* Finance Agent –Analyzes market trends, stock performance, and key financial metrics.
+* Generate Node –If documents fully answer the query, they proceed to final output generation.## [3. Real-Time Web Search for External Insights](#_3-real-time-web-search-for-external-insights)
+When internal data is insufficient, FA3STER utilizes Tavily Search to fetch real-time financial insights from external sources. If results lack precision, the Finance Agent cross-verifies retrieved data and refines the response.
+## [4. Financial Data Interpretation &amp; Visualization](#_4-financial-data-interpretation-visualization)
+* **Reasoning Agent**– Converts financial data into statistical graphs and trend visualizations, making insights actionable and easier to interpret.## [5. Fact-Checked Response Generation](#_5-fact-checked-response-generation)
+* **Fact Verification Agent**– Ensures coherence and eliminates inconsistencies before final output.
+* **Aggregator Agent**– Merges multiple subquery responses into a single, well-structured report.## [Vertical Autonomous Layer:](#vertical-autonomous-layer)
+![](https://pathway.com/_ipx/w_2560/assets/content/blog/ai-agents-finance-due-diligence/Vertical-Autonomous-Layer.png)## [Revolutionizing Due Diligence with Vertical Scaling](#revolutionizing-due-diligence-with-vertical-scaling)
+Instead of expanding FA3STER horizontally, we introduced a Vertical Autonomous Layer—a self-optimizing intelligence layer that enhances speed, accuracy, and efficiency in financial due diligence. This layer generates a concise FDD report in 10–12 minutes, offering stakeholders a quick yet highly detailed financial assessment. With a processing cost of only ₹15–₹20 ($0.20–$0.25) per report, FA3STER ensures affordable and scalable automation.
+## [Key Components of the Autonomous Layer](#key-components-of-the-autonomous-layer)
+* **Key Metrics Agent**– Analyzes revenue, profit margins, and growth rates to assess financial health.
+* **Business Agent**– Evaluates market conditions, competitive positioning, and risk factors.
+* **Executive Agent**– Assesses governance, compliance, and long-term strategic alignment.## [How FA3STER’s Autonomous Layer Works](#how-fa3sters-autonomous-layer-works)
+FA3STER’s agents operate in two iterative modes:
+1. **Q&amp;A Mode**– Agents generate domain-specific financial queries, retrieving insights using the RAG system.
+2. **Discussion Mode**– Agents collaborate, refine findings, and generate new investigative questions to enhance financial accuracy.
+The cycle repeats until the majority of agents agree on the accuracy and completeness of the analysis. The final Quick Overview Panel displays summarized insights, making it easy for stakeholders to interact with key financial data instantly.
+## [Results and Metrics](#results-and-metrics)
+For evaluation, we use 2 datasets:
+* [FinQABench](https://huggingface.co/datasets/lighthouzai/finqabench):
+* Based on Apple’s 2022 10K SEC filing, containing 100 test cases with financial queries and expected responses.
+* Used to assess accuracy, hallucination prevention, and response quality in financial AI systems.
+We compared the performance of the following workflows on this dataset:
+* Naive RAG without Agentic Contextual Chunking
+* Naive RAG with Agentic Contextual Chunking
+|Workflow|Context Precision|Context Recall|Response Relevancy|Faithfulness|Factual Correctness|
+Naive RAG with Agentic Chunking|0.904|0.849|0.928|0.901|0.518|
+Naive RAG without Agentic Chunking|0.801|0.782|0.883|0.828|0.449|
+It is clear from the results that the performance is enhanced by Agentic Chunking.
+* [SEC 10-Q dataset](https://github.com/docugami/KG-RAG-datasets/tree/main/sec-10-q):
+* Includes four AAPL 10-Q filings and 39 complex financial queries requiring multi-step reasoning.
+* Designed to stress-test retrieval-augmented generation (RAG) models for multi-document financial analysis.
+Here, we compared the following workflows:
+* OpenParser with Self-RAG[[3]](https://arxiv.org/abs/2310.11511)
+* OpenParser with Naive-RAG
+* Our Post-Retrieval Agentic Workflow with Contextual Chunking
+* Unstructured Parser with Naive-RAG
+* Unstructured Parser with Self-RAG
+It can be observed that Our Post-Retrieval Agentic Workflow with Contextual Chunking outperforms other methods by a significant margin. This shows the efficiency and enhanced performance of our Post-Retrieval Agentic Workflow on datasets which require reasoning over multiple documents in order to answer queries. In particular, improved Factual Correctness and Faithfulness are much needed in Financial Due Diligence, as it indicates that hallucination is minimized and information is preserved.
+The following metrics from**RAGAS**[[2]](https://arxiv.org/abs/2309.15217)were used for evaluation:
+1. **[Context Precision](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/context_precision/)**: Measures how many retrieved chunks are relevant to the query. Higher is better.
+2. **[Context Recall](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/context_recall/)**: Assesses the proportion of relevant documents successfully retrieved
+3. **[Response Relevancy](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/answer_relevance/)**: Evaluates how well the generated answer matches the query intent.
+4. **[Faithfulness](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/faithfulness/)**: Ensures responses remain factually consistent with retrieved data.
+5. **[Factual Correctness](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/factual_correctness/)**: Compares answers to ground truth financial data for accuracy.
+|Workflow|Context Precision|Context Recall|Response Relevancy|Faithfulness|Factual Correctness|
+OpenParser with Self-RAG|0.524|0.272|0.364|0.659|0.280|
+OpenParser with Naive-RAG|0.521|0.253|0.374|0.623|0.273|
+Unstructured Parser with Self-RAG|0.499|0.259|0.269|0.596|0.269|
+Unstructured Parser with Naive-RAG|0.524|0.313|0.319|0.503|0.276|
+Our Workflow|0.690|0.396|0.701|0.788|0.384|
+## [Resilience to Error Handling:](#resilience-to-error-handling)
+Our Financial Agentic RAG system incorporates robust error management, ensuring uninterrupted functionality. This enhances resilience by enabling quick recovery from failures, rapid error identification, and timely debugging and resolution.
+**Tool-Specific Fallbacks**: Key tools have designated backups, such as web search stepping in for API failures or alternative tools in the Finance Agent.
+For example: When the relevant data is not retrieved from the primary data source, Finance Agent falls back to tools like Tavily and if that too fails, it falls back to open source web searches like duck duck go, further fallback details have been mentioned in the appendix.
+**Error Handling**: Nested try and except blocks to manage failures effectively.
+Fallback Mechanisms, extensive logging is implemented to ensure traceability. When a fallback is triggered, the callback function raises a warning to facilitate tracking and debugging.
+**Avoiding Exponential Back-Off**: Excluded exponential back-off to maintain query speed, as most tool failures were observed to be binary.
+## [Seamless User Experience with Dual-Mode Interface](#seamless-user-experience-with-dual-mode-interface)
+FA3STER provides an intuitive, transparent, and data-driven interface designed for financial professionals, analysts, and investors. Users can switch between two core modes for flexibility and depth in financial analysis.
+### [1. Chat Mode: Interactive Financial Query Resolution](#_1-chat-mode-interactive-financial-query-resolution)
+* Users can ask real-time financial questions, and FA3STER generates accurate, data-backed responses.
+* Built on Pathway’s infrastructure, the system provides a clear, step-by-step breakdown of how each response is generated by live streaming the agentic flow.
+* Offers full transparency, allowing users to track how financial insights are derived.### [2. Report Generation Mode: Automated Due Diligence Reports](#_2-report-generation-mode-automated-due-diligence-reports)
+* Users enter a company’s name, and FA3STER’s Agentic RAG framework autonomously retrieves and processes financial data.
+* Generates concise yet detailed FDD reports, summarizing key financial insights such as:
+* Revenue shares
+* Global market penetration
+* Key financial performance indicators
+* The Next.js-powered UI &amp; websockets ensures real-time visibility into agent activity.
+* The final report is saved locally, while an interactive dashboard visualizes insights for strategic decision-making.![](https://pathway.com/_ipx/w_2560/assets/content/blog/ai-agents-finance-due-diligence/front-end-stack.png)## [Responsible AI: Security, Compliance &amp; Transparency](#responsible-ai-security-compliance-transparency)
+Our AI architecture incorporates robust guardrails to ensure secure, ethical, and compliant interactions. These safeguards block irrelevant queries, including defamation, privacy violations, hate speech, and intellectual property concerns, upholding privacy and ethical standards.
+**Llamaguard’s Safety guardrail**[[4]](https://arxiv.org/abs/2312.06674):
+* Powered by Llama-3.1 8B, Llamaguard classifies queries as safe or unsafe.
+* Detects 14 predefined risk categories (e.g., privacy violations, hate speech, defamation).
+* Ensures secure and compliance-driven user interactions.
+**PII Guardrail**[[5]](https://www.guardrailsai.com/docs/examples/check_for_pii):
+* Initially explored Guardrail.ai with Presidio Analyzer &amp; Anonymizer for PII detection.
+* Found the approach unnecessary and resource-intensive, leading to its removal for workflow optimization.
+**Transparency through Socket Communication**:
+* FA3STER’s backend and frontend are connected via socket communication to track query execution in real time.
+* Every query’s processing path is logged and visually represented, giving users a clear, step-by-step breakdown of data flow.
+* Enhances trust, explainability, and system reliability.## [Conclusion: Transforming Financial Due Diligence with FA3STER](#conclusion-transforming-financial-due-diligence-with-fa3ster)
+FA3STER redefines financial due diligence by combining Pathway’s dynamic capabilities with an agentic RAG architecture. Through intelligent document retrieval, contextual chunking, and autonomous multi-agent processing, it delivers highly accurate, efficient, and scalable financial insights.
+Rigorous testing confirms FA3STER’s superior performance over traditional RAG systems, minimizing errors while enhancing speed, transparency, and reliability. By leveraging Pathway’s real-time streaming and indexing framework, FA3STER ensures seamless financial analysis, adapting to evolving datasets with unparalleled precision.
+As AI-driven financial intelligence continues to evolve, FA3STER stands at the forefront—setting new standards for automation, accuracy, and decision-making in the financial sector.
+If you are interested in diving deeper into the topic, here are some good references to get started with Pathway:
+* [Pathway Developer Documentation](https://pathway.com/developers/user-guide/introduction/welcome)
+* [Pathway App Templates](https://pathway.com/developers/templates)
+* [Discord Community of Pathway](https://discord.gg/pathway)
+* [Power and Deploy RAG Agent Tools with Pathway](https://pathway.com/blog/deploy-rag-agent-tools-with-pathway)
+* [End-to-end Real-time RAG app with Pathway](https://github.com/pathwaycom/llm-app/tree/main/templates/question_answering_rag)## [Authors:](#authors)
+* [Rishikant Chigrupaatii](https://www.linkedin.com/in/rishikant-chigrupaatii-693230240)
+* [Anurag Deo](https://www.linkedin.com/in/anurag-deo-8b30b422b)
+* [Lalit Chandra Routhu](https://www.linkedin.com/in/lalit-chandra-routhu-3901aa225)
+* [Vinayak Goyal](https://www.linkedin.com/in/vinayak-goyal-b769b5251)
+* [Krishna Rathore](https://www.linkedin.com/in/kr005)
+* [Bibhuti Jha](https://www.linkedin.com/in/bibhuti-jha-045195253)
+* [Pratik Amrit](https://www.linkedin.com/in/pratik-amrit-2322a6287)
+* [Satyam Sahoo](https://www.linkedin.com/in/satyam-sahoo-7b9786248)
+![](https://d14l3brkh44201.cloudfront.net/assets/blog/avatars/pathway-community-av.png?width=250/height=250)
+Pathway Community
+Multiple authors
+Power your RAG and ETL pipelines with Live Data
+[Get started for free](https://pathway.com/developers/user-guide/introduction/installation)
+![](https://pathway.com/assets/landing/new-hero-logo.svg)
+Related Articles
+* [
+![](https://d14l3brkh44201.cloudfront.net/assets/blog/thumbnails/ai-agents-finance-due-diligence-th.png?width=400/height=240/quality=50/blur=3)
+![Pathway Community avatar](https://d14l3brkh44201.cloudfront.net/assets/blog/avatars/pathway-community-av.png?width=100/height=100)
+Pathway Community
+communityMar 26, 2025
+How AI Agents in Finance Are Transforming Financial Due Diligence: FA3STER
+](https://pathway.com/blog/ai-agents-finance-due-diligence)
+* [
+![](https://d14l3brkh44201.cloudfront.net/assets/blog/thumbnails/adaptive-agents-rag-th.png?width=400/height=240/quality=50/blur=3)
+![Pathway Community avatar](https://pathway.com/_ipx/s_100x100/assets/content/blog/avatars/pathway-community-av.png)
+Pathway Community
+communityApr 2, 2025
+Adaptive Agents for Real-Time RAG: Domain-Specific AI for Legal, Finance &amp; Healthcare
+](https://pathway.com/blog/adaptive-agents-rag)
+* [
+![](https://d14l3brkh44201.cloudfront.net/assets/blog/thumbnails/earnings-call-transcript-analysis-framework-th.png?width=400/height=240/quality=50/blur=3)
+![Pathway Community avatar](https://d14l3brkh44201.cloudfront.net/assets/blog/avatars/pathway-community-av.png?width=100/height=100)
+Pathway Community
+communitySep 3, 2025
+Financial Report Analysis with LiveAI™
+](https://pathway.com/blog/ai-financial-report-analysis)
+[
+Blog
+Adaptive Agents for Real-Time RAG: Domain-Specific AI for Legal, Finance &amp; Healthcare
+](https://pathway.com/blog/adaptive-agents-rag)[
+Blog
+Financial Report Analysis with LiveAI™
+](https://pathway.com/blog/ai-financial-report-analysis)

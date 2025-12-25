@@ -1,0 +1,9 @@
+{
+  "url": "https://pathway.com/blog/ai-agents-finance-due-diligence",
+  "title": "How AI Agents in Finance Are Transforming Financial Due Diligence: FA3STER",
+  "published_date": "2025-03-26T04:12:54.000Z",
+  "summary": "The webpage describes **FA3STER** (Financial Agentic Autonomous and Accurate System Through Evolving Retrieval Augmented Generation), which is an **Autonomous, Multi-Agent Real-Time RAG System** specifically designed to transform **Financial Due Diligence (FDD)**.\n\nKey aspects relevant to \"agentic memory\" in this context include:\n\n*   **Agentic RAG Architecture:** FA3STER uses a multi-agent system powered by LangGraph and specialized agents (Finance Agent, SQL Agent, Reasoning Agent, etc.) that collaborate, cross-check findings, and iterate to refine financial insights. This multi-agent interaction and refinement process serves as a form of dynamic, specialized memory for complex tasks.\n*   **Vertical Autonomous Layer:** This layer involves agents operating in iterative modes (Q&A Mode and Discussion Mode) where they refine findings and generate new investigative questions until consensus is reached, enhancing the accuracy and depth of the analysis\u2014a key function of advanced memory systems.\n*   **Use Cases:** The system is explicitly tailored for **Financial Due Diligence (FDD)**, automating document analysis, accurately responding to complex financial queries, and generating summarized FDD reports and quick-look dashboards.\n*   **Functionality:** It supports both **Chat Mode** for interactive financial query resolution and **Report Generation Mode** for automated due diligence reports.\n\nIn summary, the page details an agentic system (FA3STER) built using an Agentic RAG framework that provides sophisticated, iterative processing and specialized analysis capabilities for **financial due diligence use cases**.",
+  "score": null,
+  "saved_at": "2025-12-25T16:17:13.577373",
+  "source": "exa"
+}
