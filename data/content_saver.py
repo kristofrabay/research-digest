@@ -84,15 +84,22 @@ class ContentSaver:
         """
         Download arXiv PDF from abstract URL.
         Converts: https://arxiv.org/abs/2512.20605v1 -> https://arxiv.org/pdf/2512.20605v1
+        
+        Uses URL indexer so lookup_url(arxiv_url) will find it.
         """
+        # Get folder via indexer (uses original arxiv_url as key)
+        folder = self.get_folder_for_url(arxiv_url)
+        
         # Convert abs URL to PDF URL (no .pdf extension needed)
         pdf_url = arxiv_url.replace("/abs/", "/pdf/")
         
         # Extract paper ID for filename
         paper_id = arxiv_url.split("/")[-1]
-        filename = f"arxiv_{paper_id}.pdf"
+        file_path = folder / f"arxiv_{paper_id}.pdf"
         
-        return self.save_pdf(pdf_url, filename)
+        urllib.request.urlretrieve(pdf_url, file_path)
+        logger.info(f"Saved arXiv PDF: {file_path}")
+        return file_path
     
     def save_metadata(self, url: str, metadata: dict) -> Path:
         """Save metadata JSON for a URL."""
