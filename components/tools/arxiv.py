@@ -193,19 +193,20 @@ class ArxivClient:
         self,
         categories: list[str] | None = None,
         keywords: list[str] | None = None,
-        max_results: int = 1_000,
+        max_results_cats: int = 200,
+        max_results_kws: int = 150,
         last_n_days: int | None = None,
     ) -> ResearchResults:
         """Search arXiv by categories AND keywords separately, then concat."""
         # Run both searches separately
         cats_results = self.search_by_categories(
             categories=categories,
-            max_results=max_results,
+            max_results=max_results_cats,
             last_n_days=last_n_days,
         )
         kws_results = self.search_by_keywords(
             keywords=keywords,
-            max_results=max_results,
+            max_results=max_results_kws,
             last_n_days=last_n_days,
         )
         
@@ -213,74 +214,4 @@ class ArxivClient:
         all_items = cats_results.items + kws_results.items
         logger.info(f"Found {len(all_items)} total entries")
         return ResearchResults(items=all_items)
-
-
-# =============================================================================
-# Legacy functions (kept for backwards compatibility)
-# =============================================================================
-def get_arxiv_categories() -> list[str]:
-    return ARXIV_CATEGORIES
-
-
-def search_arxiv(
-    search_query: str = "",
-    categories: list[str] | None = None,
-    start: int = 0,
-    max_results: int = 10,
-    sort_by: str = "submittedDate",
-    sort_order: str = "descending"
-) -> dict:
-    """Legacy search function - returns raw feed."""
-    base_url = "http://export.arxiv.org/api/query?"
-    
-    query_parts = []
-    if search_query:
-        query_parts.append(f"all:{search_query}")
-    
-    if categories:
-        cat_query = " OR ".join([f"cat:{cat}" for cat in categories])
-        if len(categories) > 1:
-            cat_query = f"({cat_query})"
-        query_parts.append(cat_query)
-    
-    full_query = " AND ".join(query_parts) if query_parts else "all:*"
-    
-    params = {
-        "search_query": full_query,
-        "start": start,
-        "max_results": max_results,
-        "sortBy": sort_by,
-        "sortOrder": sort_order
-    }
-    
-    url = base_url + urllib.parse.urlencode(params)
-    print(f"Query URL: {url}\n")
-    
-    response = urllib.request.urlopen(url)
-    feed = feedparser.parse(response.read().decode("utf-8"))
-    
-    return feed
-
-
-def print_results(feed: dict):
-    """Pretty print arXiv search results."""
-    print(f"Total results: {feed.feed.get('opensearch_totalresults', 'N/A')}")
-    print(f"Showing: {len(feed.entries)} entries\n")
-    print("=" * 80)
-    
-    for i, entry in enumerate(feed.entries, 1):
-        print(f"\n[{i}] {entry.title}")
-        print(f"    ID: {entry.id}")
-        print(f"    Published: {entry.published}")
-        print(f"    Authors: {', '.join(a.name for a in entry.authors[:3])}", end="")
-        if len(entry.authors) > 3:
-            print(f" + {len(entry.authors) - 3} more")
-        else:
-            print()
         
-        categories = [tag.term for tag in entry.tags]
-        print(f"    Categories: {', '.join(categories)}")
-        
-        summary = entry.summary.replace("\n", " ")[:200]
-        print(f"    Summary: {summary}...")
-        print("-" * 80)
