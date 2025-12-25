@@ -48,7 +48,9 @@ ARXIV_KEYWORDS = [
     "hallucination",
     "multi-agent",
     "agent memory",
+    "agentic memory",
     "agent planning",
+    "agentic planning",
     "tool use",
     "function calling",
     # RAG & Retrieval
