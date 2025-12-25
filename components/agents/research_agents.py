@@ -88,11 +88,16 @@ async def search_with_exa(
     focus_key: str,
     focus_description: str,
     num_results: int = 100,
+    content_saver = None,  # Optional ContentSaver instance
 ) -> ResearchResults:
-
+    """
+    Run Exa search for a focus area.
+    
+    If content_saver is provided, saves raw content (text + metadata) for each result.
+    This way you don't need to re-fetch content later.
+    """
     logger.info(f"Running Exa research agent for focus area: {focus_key}")
     
-    # Build query from focus description
     query = f"{focus_key}: {focus_description}"
     
     result = await exa_client.search(
@@ -107,37 +112,41 @@ async def search_with_exa(
         },
     )
     
-    # Convert to ResearchResults
     items = []
     for r in result.results:
+        # Optionally save raw content
+        if content_saver is not None:
+            _, __ = content_saver.save_exa_result({
+                "url": r.url,
+                "title": r.title,
+                "published_date": r.published_date,
+                "summary": r.summary,
+                "text": r.text,
+                "score": r.score,
+            })
+            logger.info(f"Saved content for {r.url}")
+        
         items.append(ResearchItem(
             url=r.url,
             title=r.title or "Untitled",
             source="Exa",
             published=r.published_date[:10] if r.published_date else "unknown",
-            relevance=r.summary or r.text[:4000] or "No summary available",
+            relevance=r.summary or r.text[:4000] if r.text else "No summary available",
         ))
     
     return ResearchResults(items=items)
 
-# Helper function to get raw results from Exa response
-def get_exa_raw_results(exa_result) -> list[dict]:
-    """Extract raw results with full text from Exa response."""
-    raw = []
-    for r in exa_result.results:
-        raw.append({
-            "url": r.url,
-            "title": r.title,
-            "published_date": r.published_date,
-            "summary": r.summary,
-            "text": r.text,
-            "score": r.score,
-        })
-    return raw
 
-
-async def run_mixed_research_agents(focus_areas: dict[str, str]) -> dict[str, ResearchResults]:
-    """Run OpenAI, Anthropic, and Exa agents for all focus areas."""
+async def run_mixed_research_agents(
+    focus_areas: dict[str, str],
+    content_saver = None,  # Optional: pass to Exa to save raw content
+) -> dict[str, ResearchResults]:
+    """
+    Run OpenAI, Anthropic, and Exa agents for all focus areas.
+    
+    If content_saver is provided, Exa results will have their raw content
+    (full text + metadata) saved automatically.
+    """
     all_tasks = []
     task_info = []
     
@@ -146,7 +155,7 @@ async def run_mixed_research_agents(focus_areas: dict[str, str]) -> dict[str, Re
         task_info.append((key, "openai"))
         all_tasks.append(search_with_anthropic(key, focus_areas[key]))
         task_info.append((key, "anthropic"))
-        all_tasks.append(search_with_exa(key, focus_areas[key]))
+        all_tasks.append(search_with_exa(key, focus_areas[key], content_saver=content_saver))
         task_info.append((key, "exa"))
     
     logger.info(f"Running {len(all_tasks)} tasks")
