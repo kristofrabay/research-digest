@@ -10,114 +10,135 @@ logger = logging.getLogger(__name__)
 
 
 class ContentSaver:
-    """Save content (markdown, PDFs) to date-organized folders."""
+    """
+    Save content files to flat folder, track via JSON index.
     
-    def __init__(self, base_path: str = "data/content"):
+    Files: data/contents/{hash}.md or {paper_id}.pdf
+    Index: data/content_index.json (URL → metadata + path)
+    """
+    
+    def __init__(self, base_path: str = "data"):
         self.base_path = Path(base_path)
-        self.today = datetime.now().strftime("%Y-%m-%d")
-        self.today_path = self.base_path / self.today
-        self.index_path = self.base_path / "_url_index.json"  # At content level, not date level
-        self._ensure_today_folder()
+        self.contents_path = self.base_path / "contents"
+        self.index_path = self.base_path / "content_index.json"
+        
+        # Ensure contents folder exists
+        self.contents_path.mkdir(parents=True, exist_ok=True)
+        
+        # Load index
         self._load_index()
     
-    def _ensure_today_folder(self):
-        """Create today's folder if it doesn't exist."""
-        if not self.today_path.exists():
-            self.today_path.mkdir(parents=True, exist_ok=True)
-            logger.info(f"Created folder: {self.today_path}")
-    
     def _load_index(self):
-        """Load URL → folder mapping."""
+        """Load URL → content mapping."""
         if self.index_path.exists():
-            self.url_index = json.loads(self.index_path.read_text())
+            self.index = json.loads(self.index_path.read_text(encoding="utf-8"))
+            logger.info(f"Loaded content index with {len(self.index)} entries")
         else:
-            self.url_index = {}
+            self.index = {}
     
     def _save_index(self):
-        """Save URL → folder mapping."""
-        self.index_path.write_text(json.dumps(self.url_index, indent=2))
+        """Save index to JSON (atomic write)."""
+        tmp_path = self.index_path.with_suffix(".tmp")
+        tmp_path.write_text(json.dumps(self.index, indent=2, ensure_ascii=False), encoding="utf-8")
+        tmp_path.rename(self.index_path)
     
     def _url_to_hash(self, url: str) -> str:
         """Generate short hash from URL."""
         return hashlib.sha256(url.encode()).hexdigest()[:16]
     
-    def get_folder_for_url(self, url: str) -> Path:
-        """Get or create folder for a URL, maintaining index."""
-        if url in self.url_index:
-            # Already exists — return existing path
-            entry = self.url_index[url]
-            return self.base_path / entry["date"] / entry["folder"]
-        
-        folder_name = self._url_to_hash(url)
-        self.url_index[url] = {"date": self.today, "folder": folder_name}
-        self._save_index()
-        
-        folder_path = self.today_path / folder_name
-        folder_path.mkdir(parents=True, exist_ok=True)
-        return folder_path
+    def exists(self, url: str) -> bool:
+        """Check if content exists for URL."""
+        return url in self.index
     
-    def lookup_url(self, url: str) -> Path | None:
-        """Look up if content exists for a URL (from any date)."""
-        if url in self.url_index:
-            entry = self.url_index[url]
-            folder = self.base_path / entry["date"] / entry["folder"]
-            if folder.exists():
-                return folder
+    def get(self, url: str) -> dict | None:
+        """Get index entry for URL."""
+        return self.index.get(url)
+    
+    def get_content_path(self, url: str) -> Path | None:
+        """Get path to content file for URL."""
+        if url in self.index:
+            return Path(self.index[url]["content_path"])
         return None
     
-    def save_markdown(self, url: str, content: str, filename: str = "content.md") -> Path:
-        """Save markdown content for a URL."""
-        folder = self.get_folder_for_url(url)
-        file_path = folder / filename
+    def save_markdown(self, url: str, content: str, source: str, metadata: dict | None = None) -> Path:
+        """
+        Save markdown content for a URL.
+        
+        Args:
+            url: The source URL (used as key in index)
+            content: The markdown content to save
+            source: Where it came from (e.g., "exa", "jina")
+            metadata: Additional metadata to store in index
+        
+        Returns:
+            Path to saved file
+        """
+        # Generate filename from URL hash
+        filename = f"{self._url_to_hash(url)}.md"
+        file_path = self.contents_path / filename
+        
+        # Save content
         file_path.write_text(content, encoding="utf-8")
+        
+        # Update index
+        self.index[url] = {
+            "content_path": str(file_path),
+            "source": source,
+            "saved_at": datetime.now().isoformat(),
+            **(metadata or {}),
+        }
+        self._save_index()
+        
         logger.info(f"Saved markdown: {file_path}")
         return file_path
     
-    def save_pdf(self, pdf_url: str, filename: str) -> Path:
-        """Download and save PDF from URL."""
-        file_path = self.today_path / filename
-        urllib.request.urlretrieve(pdf_url, file_path)
-        logger.info(f"Saved PDF: {file_path}")
-        return file_path
-    
-    def save_arxiv_pdf(self, arxiv_url: str) -> Path:
+    def save_arxiv_pdf(self, arxiv_url: str, title: str | None = None, abstract: str | None = None) -> Path:
         """
         Download arXiv PDF from abstract URL.
         Converts: https://arxiv.org/abs/2512.20605v1 -> https://arxiv.org/pdf/2512.20605v1
         
-        Uses URL indexer so lookup_url(arxiv_url) will find it.
+        Args:
+            arxiv_url: The arXiv abstract URL
+            title: Optional paper title for metadata
+            abstract: Optional abstract for metadata
+        
+        Returns:
+            Path to saved PDF
         """
-        # Get folder via indexer (uses original arxiv_url as key)
-        folder = self.get_folder_for_url(arxiv_url)
-        
-        # Convert abs URL to PDF URL (no .pdf extension needed)
-        pdf_url = arxiv_url.replace("/abs/", "/pdf/")
-        
         # Extract paper ID for filename
         paper_id = arxiv_url.split("/")[-1]
-        file_path = folder / f"arxiv_{paper_id}.pdf"
+        filename = f"{paper_id}.pdf"
+        file_path = self.contents_path / filename
         
+        # Convert abs URL to PDF URL
+        pdf_url = arxiv_url.replace("/abs/", "/pdf/")
+        
+        # Download PDF
         urllib.request.urlretrieve(pdf_url, file_path)
+        
+        # Update index
+        self.index[arxiv_url] = {
+            "content_path": str(file_path),
+            "source": "arxiv",
+            "saved_at": datetime.now().isoformat(),
+            "title": title,
+            "abstract": abstract,
+            "paper_id": paper_id,
+        }
+        self._save_index()
+        
         logger.info(f"Saved arXiv PDF: {file_path}")
         return file_path
     
-    def save_metadata(self, url: str, metadata: dict) -> Path:
-        """Save metadata JSON for a URL."""
-        folder = self.get_folder_for_url(url)
-        file_path = folder / "metadata.json"
-        file_path.write_text(json.dumps(metadata, indent=2, default=str), encoding="utf-8")
-        logger.info(f"Saved metadata: {file_path}")
-        return file_path
-    
-    def save_exa_result(self, exa_item: dict) -> tuple[Path, Path]:
+    def save_exa_result(self, exa_item: dict) -> Path:
         """
-        Save an Exa search result (text + metadata).
+        Save an Exa search result.
         
         Args:
-            exa_item: dict with url, title, text, summary, published_date, etc.
+            exa_item: dict with url, title, text, summary, published_date, score
         
         Returns:
-            tuple of (content_path, metadata_path)
+            Path to saved content file
         """
         url = exa_item["url"]
         
@@ -130,18 +151,44 @@ class ContentSaver:
             content += f"## Summary\n\n{exa_item['summary']}\n\n---\n\n"
         content += f"## Full Content\n\n{exa_item.get('text', 'No content')}\n"
         
-        content_path = self.save_markdown(url, content)
+        # Save with metadata
+        return self.save_markdown(
+            url=url,
+            content=content,
+            source="exa",
+            metadata={
+                "title": exa_item.get("title"),
+                "summary": exa_item.get("summary"),
+                "published_date": exa_item.get("published_date"),
+                "score": exa_item.get("score"),
+            },
+        )
+    
+    def save_web_content(self, url: str, content: str, title: str | None = None) -> Path:
+        """
+        Save web content fetched via Jina or similar.
         
-        # Save metadata (without the full text)
-        metadata = {
-            "url": url,
-            "title": exa_item.get("title"),
-            "published_date": exa_item.get("published_date"),
-            "summary": exa_item.get("summary"),
-            "score": exa_item.get("score"),
-            "saved_at": datetime.now().isoformat(),
-            "source": "exa",
-        }
-        metadata_path = self.save_metadata(url, metadata)
+        Args:
+            url: The source URL
+            content: The markdown content
+            title: Optional page title
         
-        return content_path, metadata_path
+        Returns:
+            Path to saved file
+        """
+        return self.save_markdown(
+            url=url,
+            content=content,
+            source="jina",
+            metadata={"title": title},
+        )
+    
+    def count(self) -> int:
+        """Number of stored items."""
+        return len(self.index)
+    
+    def __contains__(self, url: str) -> bool:
+        return url in self.index
+    
+    def __len__(self) -> int:
+        return len(self.index)
