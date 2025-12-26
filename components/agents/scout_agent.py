@@ -4,7 +4,7 @@ from openai.types.shared.reasoning import Reasoning
 from tqdm.asyncio import tqdm_asyncio
 
 from components.prompts.scout_model import ScoutDecision
-from components.prompts.scout_agent import SCOUT_SYSTEM_PROMPT
+from components.prompts.scout_agent import get_scout_system_prompt, get_scout_user_prompt
 
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 # --- Agent Definition ---
 scout_agent = Agent(
     name="Scout Agent",
-    instructions=SCOUT_SYSTEM_PROMPT,
+    instructions=get_scout_system_prompt(),
     model="gpt-5.2",
     model_settings=ModelSettings(
         reasoning=Reasoning(
@@ -48,17 +48,13 @@ async def scout_item(
     Returns:
         ScoutDecision with pursue/discard and reasoning
     """
-    user_message = f"""
-<item>
-<title>{title}</title>
-<published_date>{published_date}</published_date>
-<source>{source}</source>
-<url>{url}</url>
-<summary>{summary}</summary>
-</item>
-
-Should we pursue this content?
-"""
+    user_message = get_scout_user_prompt(
+        title=title,
+        source=source,
+        url=url,
+        summary=summary,
+        published_date=published_date,
+    )
     
     result = await Runner.run(scout_agent, user_message)
     return result.final_output
@@ -77,10 +73,10 @@ async def scout_batch(items: list[dict]) -> list[ScoutDecision]:
     
     tasks = [
         scout_item(
-            title=item["title"],
-            source=item["source"],
-            url=item["url"],
-            summary=item["summary"],
+            title=item.get("title", "unknown"),
+            source=item.get("source", "unknown"),
+            url=item.get("url", "unknown"),
+            summary=item.get("summary", item.get("relevance", "")),
             published_date=item.get("published", "unknown"),
         )
         for item in items
