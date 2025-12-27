@@ -2,6 +2,8 @@ from agents import Agent, Runner, ModelSettings, WebSearchTool
 from openai.types.shared.reasoning import Reasoning
 
 from tqdm.asyncio import tqdm_asyncio
+from limiter import Limiter
+from tenacity import retry, wait_random_exponential, stop_after_attempt
 
 from components.prompts.scout_model import ScoutDecision
 from components.prompts.scout_agent import get_scout_system_prompt, get_scout_user_prompt
@@ -10,7 +12,22 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# --- Agent Definition ---
+# =============================================================================
+# Rate Limiter (OpenAI - requests per minute)
+# =============================================================================
+RATE_LIMITS = {
+    "openai": {"rate": 500, "capacity": 500},
+}
+
+openai_limiter = Limiter(
+    rate=RATE_LIMITS["openai"]["rate"], 
+    capacity=RATE_LIMITS["openai"]["capacity"], 
+    consume=1
+)
+
+# =============================================================================
+# Agent Definition
+# =============================================================================
 scout_agent = Agent(
     name="Scout Agent",
     instructions=get_scout_system_prompt(),
@@ -27,7 +44,11 @@ scout_agent = Agent(
     output_type=ScoutDecision,
 )
 
-# --- Runner Function ---
+
+# =============================================================================
+# Runner Functions
+# =============================================================================
+@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(5))
 async def scout_item(
     title: str, 
     source: str, 
@@ -56,8 +77,9 @@ async def scout_item(
         published_date=published_date,
     )
     
-    result = await Runner.run(scout_agent, user_message)
-    return result.final_output
+    async with openai_limiter:
+        result = await Runner.run(scout_agent, user_message)
+        return result.final_output
 
 
 async def scout_batch(items: list[dict]) -> list[ScoutDecision]:

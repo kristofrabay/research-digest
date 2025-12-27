@@ -3,6 +3,8 @@ from tqdm.asyncio import tqdm_asyncio
 from openai import AsyncOpenAI
 from anthropic import AsyncAnthropic
 from exa_py import AsyncExa
+from limiter import Limiter
+from tenacity import retry, wait_random_exponential, stop_after_attempt
 
 from components.prompts.research_agents import (
     FOCUS_AREAS,
@@ -15,17 +17,47 @@ from components.prompts.research_models import ResearchResults, ResearchItem
 from dotenv import load_dotenv
 load_dotenv()
 
-# Clients
-openai_client = AsyncOpenAI(timeout=60*20, max_retries=3)
-anthropic_client = AsyncAnthropic(timeout=60*20, max_retries=3)
-exa_client = AsyncExa(api_key=os.getenv("EXA_API_KEY"))
-
-# Logging
 import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# =============================================================================
+# Rate Limiters (requests per minute)
+# =============================================================================
+RATE_LIMITS = {
+    "openai": {"rate": 500, "capacity": 500},
+    "anthropic": {"rate": 200, "capacity": 200},
+    "exa": {"rate": 150, "capacity": 150},
+}
 
+openai_limiter = Limiter(
+    rate=RATE_LIMITS["openai"]["rate"], 
+    capacity=RATE_LIMITS["openai"]["capacity"], 
+    consume=1
+)
+anthropic_limiter = Limiter(
+    rate=RATE_LIMITS["anthropic"]["rate"], 
+    capacity=RATE_LIMITS["anthropic"]["capacity"], 
+    consume=1
+)
+exa_limiter = Limiter(
+    rate=RATE_LIMITS["exa"]["rate"], 
+    capacity=RATE_LIMITS["exa"]["capacity"], 
+    consume=1
+)
+
+# =============================================================================
+# Clients
+# =============================================================================
+openai_client = AsyncOpenAI(timeout=60*20, max_retries=3)
+anthropic_client = AsyncAnthropic(timeout=60*20, max_retries=3)
+exa_client = AsyncExa(api_key=os.getenv("EXA_API_KEY"))
+
+
+# =============================================================================
+# Search Functions
+# =============================================================================
+@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(5))
 async def search_with_openai(
     focus_key: str, 
     focus_description: str,
@@ -35,24 +67,26 @@ async def search_with_openai(
 
     logger.info(f"Running OpenAI research agent for focus area: {focus_key}")
 
-    response = await openai_client.responses.parse(
-        model=model,
-        reasoning={"effort": reasoning_effort},
-        input=[
-            {"role": "system", "content": get_research_system_prompt(focus_key, focus_description)},
-            {"role": "user", "content": get_research_user_prompt()},
-        ],
-        text_format=ResearchResults,
-        tools=[
-            {
-                "type": "web_search",
-                "external_web_access": True
-            }
-        ],
-    )
-    return response.output_parsed
+    async with openai_limiter:
+        response = await openai_client.responses.parse(
+            model=model,
+            reasoning={"effort": reasoning_effort},
+            input=[
+                {"role": "system", "content": get_research_system_prompt(focus_key, focus_description)},
+                {"role": "user", "content": get_research_user_prompt()},
+            ],
+            text_format=ResearchResults,
+            tools=[
+                {
+                    "type": "web_search",
+                    "external_web_access": True
+                }
+            ],
+        )
+        return response.output_parsed
 
 
+@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(5))
 async def search_with_anthropic(
     focus_key: str, 
     focus_description: str,
@@ -62,55 +96,57 @@ async def search_with_anthropic(
 
     logger.info(f"Running Anthropic research agent for focus area: {focus_key}")
 
-    response = await anthropic_client.beta.messages.parse(
-        model=model,
-        max_tokens=50_000,
-        thinking={
-            "type": "enabled",
-            "budget_tokens": reasoning_budget
-        },
-        betas=["structured-outputs-2025-11-13", "web-search-2025-03-05"],
-        system=get_research_system_prompt(focus_key, focus_description),
-        messages=[{"role": "user", "content": get_research_user_prompt()}],
-        tools=[
-            {
-                "type": "web_search_20250305",
-                "name": "web_search",
-                "max_uses": 50
-            }
-        ],
-        output_format=ResearchResults,
-    )
-    return response.parsed_output
+    async with anthropic_limiter:
+        response = await anthropic_client.beta.messages.parse(
+            model=model,
+            max_tokens=50_000,
+            thinking={
+                "type": "enabled",
+                "budget_tokens": reasoning_budget
+            },
+            betas=["structured-outputs-2025-11-13", "web-search-2025-03-05"],
+            system=get_research_system_prompt(focus_key, focus_description),
+            messages=[{"role": "user", "content": get_research_user_prompt()}],
+            tools=[
+                {
+                    "type": "web_search_20250305",
+                    "name": "web_search",
+                    "max_uses": 50
+                }
+            ],
+            output_format=ResearchResults,
+        )
+        return response.parsed_output
 
 
+@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(5))
 async def search_with_exa(
     focus_key: str,
     focus_description: str,
     num_results: int = 100,
-    content_saver = None,  # Optional ContentSaver instance
+    content_saver = None,
 ) -> ResearchResults:
     """
     Run Exa search for a focus area.
     
     If content_saver is provided, saves raw content (text + metadata) for each result.
-    This way you don't need to re-fetch content later.
     """
     logger.info(f"Running Exa research agent for focus area: {focus_key}")
     
     query = f"{focus_key}: {focus_description}"
     
-    result = await exa_client.search(
-        query=query,
-        type="deep",
-        moderation=False,
-        num_results=num_results,
-        contents={
-            "text": {"maxCharacters": 100_000},
-            "summary": True,
-            #"highlights": True,
-        },
-    )
+    async with exa_limiter:
+        result = await exa_client.search(
+            query=query,
+            type="deep",
+            moderation=False,
+            num_results=num_results,
+            contents={
+                "text": {"maxCharacters": 100_000},
+                "summary": True,
+                #"highlights": True,
+            },
+        )
     
     items = []
     for r in result.results:
@@ -139,13 +175,12 @@ async def search_with_exa(
 
 async def run_mixed_research_agents(
     focus_areas: dict[str, str],
-    content_saver = None,  # Optional: pass to Exa to save raw content
+    content_saver = None,
 ) -> dict[str, ResearchResults]:
     """
     Run OpenAI, Anthropic, and Exa agents for all focus areas.
     
-    If content_saver is provided, Exa results will have their raw content
-    (full text + metadata) saved automatically.
+    If content_saver is provided, Exa results will have their raw content saved.
     """
     all_tasks = []
     task_info = []
