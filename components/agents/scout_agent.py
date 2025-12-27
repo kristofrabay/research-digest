@@ -1,10 +1,11 @@
 import asyncio
 from agents import Agent, Runner, ModelSettings, WebSearchTool
 from openai.types.shared.reasoning import Reasoning
+from openai import RateLimitError, APITimeoutError, APIConnectionError
 
 from tqdm.asyncio import tqdm_asyncio
 from limiter import Limiter
-from tenacity import retry, wait_random_exponential, stop_after_attempt
+from tenacity import retry, wait_random_exponential, stop_after_attempt, retry_if_exception_type
 
 from components.prompts.scout_model import ScoutDecision
 from components.prompts.scout_agent import get_scout_system_prompt, get_scout_user_prompt
@@ -17,9 +18,9 @@ logger = logging.getLogger(__name__)
 # Rate Limiter + Concurrency Control
 # =============================================================================
 RATE_LIMITS = {
-    "openai": {"rate": 300, "capacity": 300},  # Conservative rate
+    "openai": {"rate": 300, "capacity": 300},
 }
-MAX_CONCURRENT = 450  # Max concurrent requests at any time
+MAX_CONCURRENT = 450
 
 openai_limiter = Limiter(
     rate=RATE_LIMITS["openai"]["rate"], 
@@ -51,7 +52,20 @@ scout_agent = Agent(
 # =============================================================================
 # Runner Functions
 # =============================================================================
-@retry(wait=wait_random_exponential(min=1, max=120), stop=stop_after_attempt(5))
+# Only retry on transient errors (rate limit, timeout, connection)
+@retry(
+    wait=wait_random_exponential(min=1, max=120), 
+    stop=stop_after_attempt(5),
+    retry=retry_if_exception_type((RateLimitError, APITimeoutError, APIConnectionError)),
+)
+async def _scout_item_with_retry(user_message: str) -> ScoutDecision:
+    """Inner function that handles retries for transient errors."""
+    async with concurrency_semaphore:
+        async with openai_limiter:
+            result = await Runner.run(scout_agent, user_message)
+            return result.final_output
+
+
 async def scout_item(
     title: str, 
     source: str, 
@@ -71,6 +85,7 @@ async def scout_item(
     
     Returns:
         ScoutDecision with pursue/discard and reasoning
+        On error: returns ScoutDecision with pursue=False and error in reasoning
     """
     user_message = get_scout_user_prompt(
         title=title,
@@ -80,11 +95,16 @@ async def scout_item(
         published_date=published_date,
     )
     
-    # Semaphore limits concurrent requests, limiter controls rate
-    async with concurrency_semaphore:
-        async with openai_limiter:
-            result = await Runner.run(scout_agent, user_message)
-            return result.final_output
+    try:
+        return await _scout_item_with_retry(user_message)
+    except Exception as e:
+        error_msg = str(e)
+        
+        return ScoutDecision(
+            pursue=False,
+            confidence=0.0,
+            reasoning=f"ERROR: {error_msg}",
+        )
 
 
 async def scout_batch(items: list[dict], batch_size: int = 400) -> list[ScoutDecision]:
@@ -96,7 +116,7 @@ async def scout_batch(items: list[dict], batch_size: int = 400) -> list[ScoutDec
         batch_size: Process in batches of this size (default 400)
     
     Returns:
-        List of ScoutDecision objects
+        List of ScoutDecision objects (errors return pursue=False with error in reasoning)
     """
     all_results = []
     total = len(items)
