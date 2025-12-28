@@ -6,7 +6,7 @@ from openai import RateLimitError, APITimeoutError, APIConnectionError
 from tqdm.asyncio import tqdm_asyncio
 from limiter import Limiter
 from tenacity import retry, wait_random_exponential, stop_after_attempt, retry_if_exception_type
-
+from pydantic import ValidationError 
 from components.prompts.scout_model import ScoutDecision
 from components.prompts.scout_agent import get_scout_system_prompt, get_scout_user_prompt
 
@@ -56,7 +56,7 @@ scout_agent = Agent(
 @retry(
     wait=wait_random_exponential(min=1, max=120), 
     stop=stop_after_attempt(5),
-    retry=retry_if_exception_type((RateLimitError, APITimeoutError, APIConnectionError)),
+    retry=retry_if_exception_type((RateLimitError, APITimeoutError, APIConnectionError, ValidationError)),
 )
 async def _scout_item_with_retry(user_message: str) -> ScoutDecision:
     """Inner function that handles retries for transient errors."""

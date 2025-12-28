@@ -143,7 +143,9 @@ class GmailSender:
                 body={'raw': raw_message}
             ).execute()
             
-            print(f"✓ Email sent successfully to {to}")
+            # Mask email for privacy in logs
+            masked_email = f"{to[:3]}***{to[-3:]}"
+            print(f"✓ Email sent successfully to {masked_email}")
             print(f"  Message ID: {send_result['id']}")
             return True
             

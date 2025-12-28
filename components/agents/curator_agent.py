@@ -4,6 +4,7 @@ from tqdm.asyncio import tqdm_asyncio
 from limiter import Limiter
 from tenacity import retry, wait_random_exponential, stop_after_attempt, retry_if_exception_type
 from anthropic import RateLimitError, APITimeoutError, APIConnectionError
+from pydantic import ValidationError 
 
 from components.prompts.curator_agent import get_curator_system_prompt, get_curator_user_prompt
 from components.prompts.curator_model import CuratorAnalysis
@@ -44,7 +45,7 @@ anthropic_client = AsyncAnthropic(timeout=60 * 45, max_retries=3)
 @retry(
     wait=wait_random_exponential(min=2, max=120),
     stop=stop_after_attempt(5),
-    retry=retry_if_exception_type((RateLimitError, APITimeoutError, APIConnectionError))
+    retry=retry_if_exception_type((RateLimitError, APITimeoutError, APIConnectionError, ValidationError))
 )
 async def curate_item(
     title: str,
