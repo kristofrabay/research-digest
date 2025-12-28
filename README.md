@@ -68,15 +68,21 @@ The goal: spend less time searching, more time reading what actually matters.
 │                        5. CURATOR AGENT                                     │
 │                                                                             │
 │   Deep analysis using reasoning model (Claude / gpt-5.2)                    │
-│   Input: full text + user preferences + related items from DB               │
+│   Input: full text + user preferences (TODO: + related items from DB)       │
 │                                                                             │
 │   Output (structured):                                                      │
-│   • Summary                                                                 │
+│   • Summary (2-3 paragraphs)                                                │
 │   • Key takeaways (tailored to use case)                                    │
-│   • Relevance score (1-10)                                                  │
-│   • Novelty: breakthrough | incremental | review                            │
-│   • Actionability: must_read | skim | reference | skip                      │
-│   • Tags                                                                    │
+│   • Tags / categories                                                       │
+│                                                                             │
+│   Scoring dimensions (1-10):                                                │
+│   • Priority: overall importance for our use case                           │
+│   • Applicability: how directly usable in our workflows                     │
+│   • Novelty: new ideas vs incremental / review                              │
+│   • Technical depth: implementation detail level                            │
+│   • Credibility: source reputation, evidence quality                        │
+│                                                                             │
+│   Final verdict: must_read | worth_skimming | reference | skip              │
 └─────────────────────────────────────────────────────────────────────────────┘
                                                   │
                                                   ▼
@@ -134,7 +140,7 @@ Each provider runs in parallel with focus-area-specific prompts, ensuring broad 
 | **Vector Database** | ChromaDB (local) | Semantic search, deduplication, retrieval |
 | **Embeddings** | Voyage AI (`voyage-3-large`) | High-quality embeddings for similarity |
 | **Content Extraction** | Jina Reader API | Web page → clean text |
-| **PDF Extraction** | Anthropic / PyMuPDF | arXiv papers → text |
+| **PDF Extraction** | PyMuPDF | arXiv papers → text (PDFs discarded after extraction) |
 | **Storage** | CSV + local files | Metadata index, raw content, analysis |
 
 ---
