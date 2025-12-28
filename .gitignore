@@ -208,3 +208,5 @@ __marimo__/
 
 # Custom
 data/contents/
+gmail_client_secret.json
+gmail_token.json

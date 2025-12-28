@@ -2,6 +2,10 @@
 
 An AI-powered system that automatically discovers, curates, and synthesizes AI research from multiple sources—delivering a personalized daily or weekly digest of must-read papers, articles, and announcements.
 
+<div align="center">
+  <img src="data/research_digest_logo.png" alt="Research Digest Logo" width="450"/>
+</div>
+
 ## Objective
 
 Staying current with AI research is overwhelming. Between arXiv preprints, company blogs, Twitter threads, and news outlets, important work gets buried. This system solves that by:
