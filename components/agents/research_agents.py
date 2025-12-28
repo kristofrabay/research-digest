@@ -124,12 +124,12 @@ async def search_with_exa(
     focus_key: str,
     focus_description: str,
     num_results: int = 100,
-    content_saver = None,
+    content_manager = None,
 ) -> ResearchResults:
     """
     Run Exa search for a focus area.
     
-    If content_saver is provided, saves raw content (text + metadata) for each result.
+    If content_manager is provided, saves raw content (text + metadata) for each result.
     """
     logger.info(f"Running Exa research agent for focus area: {focus_key}")
     
@@ -151,8 +151,8 @@ async def search_with_exa(
     items = []
     for r in result.results:
         # Optionally save raw content
-        if content_saver is not None:
-            content_saver.save_exa_result({
+        if content_manager is not None:
+            content_manager.save_exa_result({
                 "url": r.url,
                 "title": r.title,
                 "published_date": r.published_date,
@@ -175,12 +175,12 @@ async def search_with_exa(
 
 async def run_mixed_research_agents(
     focus_areas: dict[str, str],
-    content_saver = None,
+    content_manager = None,
 ) -> dict[str, ResearchResults]:
     """
     Run OpenAI, Anthropic, and Exa agents for all focus areas.
     
-    If content_saver is provided, Exa results will have their raw content saved.
+    If content_manager is provided, Exa results will have their raw content saved.
     """
     all_tasks = []
     task_info = []
@@ -190,7 +190,7 @@ async def run_mixed_research_agents(
         task_info.append((key, "openai"))
         all_tasks.append(search_with_anthropic(key, focus_areas[key]))
         task_info.append((key, "anthropic"))
-        all_tasks.append(search_with_exa(key, focus_areas[key], content_saver=content_saver))
+        all_tasks.append(search_with_exa(key, focus_areas[key], content_manager=content_manager))
         task_info.append((key, "exa"))
     
     logger.info(f"Running {len(all_tasks)} tasks")

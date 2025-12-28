@@ -1,17 +1,21 @@
+import os
 import json
 import hashlib
 import urllib.request
 from pathlib import Path
 from datetime import datetime
 
+import fitz
+import httpx
+
 import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class ContentSaver:
+class ContentManager:
     """
-    Save content files to flat folder, track via JSON index.
+    Fetch and save content files to flat folder, track via JSON index.
     
     Files: data/contents/{hash}.md or {paper_id}.pdf
     Index: data/content_index.json (URL → metadata + path)
@@ -22,10 +26,7 @@ class ContentSaver:
         self.contents_path = self.base_path / "contents"
         self.index_path = self.base_path / "content_index.json"
         
-        # Ensure contents folder exists
         self.contents_path.mkdir(parents=True, exist_ok=True)
-        
-        # Load index
         self._load_index()
     
     def _load_index(self):
@@ -61,26 +62,12 @@ class ContentSaver:
         return None
     
     def save_markdown(self, url: str, content: str, source: str, metadata: dict | None = None) -> Path:
-        """
-        Save markdown content for a URL.
-        
-        Args:
-            url: The source URL (used as key in index)
-            content: The markdown content to save
-            source: Where it came from (e.g., "exa", "jina")
-            metadata: Additional metadata to store in index
-        
-        Returns:
-            Path to saved file
-        """
-        # Generate filename from URL hash
+        """Save markdown content for a URL."""
         filename = f"{self._url_to_hash(url)}.md"
         file_path = self.contents_path / filename
         
-        # Save content
         file_path.write_text(content, encoding="utf-8")
         
-        # Update index
         self.index[url] = {
             "content_path": str(file_path),
             "source": source,
@@ -91,33 +78,40 @@ class ContentSaver:
         
         return file_path
     
-    def save_arxiv_pdf(self, arxiv_url: str, title: str | None = None, abstract: str | None = None) -> Path:
+    def save_arxiv_pdf(self, arxiv_url: str, title: str | None = None, abstract: str | None = None) -> dict:
         """
-        Download arXiv PDF from abstract URL.
-        Converts: https://arxiv.org/abs/2512.20605v1 -> https://arxiv.org/pdf/2512.20605v1
-        
-        Args:
-            arxiv_url: The arXiv abstract URL
-            title: Optional paper title for metadata
-            abstract: Optional abstract for metadata
+        Download arXiv PDF and extract text to markdown.
         
         Returns:
-            Path to saved PDF
+            dict with pdf_path and md_path
         """
-        # Extract paper ID for filename
         paper_id = arxiv_url.split("/")[-1]
-        filename = f"{paper_id}.pdf"
-        file_path = self.contents_path / filename
-        
-        # Convert abs URL to PDF URL
-        pdf_url = arxiv_url.replace("/abs/", "/pdf/")
+        pdf_path = self.contents_path / f"{paper_id}.pdf"
+        md_path = self.contents_path / f"{paper_id}.md"
         
         # Download PDF
-        urllib.request.urlretrieve(pdf_url, file_path)
+        pdf_url = arxiv_url.replace("/abs/", "/pdf/")
+        urllib.request.urlretrieve(pdf_url, pdf_path)
+        
+        # Extract text with PyMuPDF
+        doc = fitz.open(pdf_path)
+        text = ""
+        for page in doc:
+            text += page.get_text()
+        doc.close()
+        
+        # Save markdown
+        md_content = f"# {title or paper_id}\n\n"
+        md_content += f"**arXiv:** {arxiv_url}\n\n"
+        if abstract:
+            md_content += f"## Abstract\n\n{abstract}\n\n"
+        md_content += f"## Full Text\n\n{text}\n"
+        md_path.write_text(md_content, encoding="utf-8")
         
         # Update index
         self.index[arxiv_url] = {
-            "content_path": str(file_path),
+            "content_path": str(md_path),
+            "pdf_path": str(pdf_path),
             "source": "arxiv",
             "saved_at": datetime.now().isoformat(),
             "title": title,
@@ -126,22 +120,40 @@ class ContentSaver:
         }
         self._save_index()
         
-        logger.info(f"Saved arXiv PDF: {file_path}")
-        return file_path
+        logger.info(f"Saved arXiv: {paper_id}")
+        return {"pdf_path": pdf_path, "md_path": md_path}
+    
+    async def fetch_and_save_jina(self, url: str, title: str | None = None) -> Path:
+        """
+        Fetch webpage via Jina Reader and save as markdown.
+        """
+        async with httpx.AsyncClient(timeout=60) as client:
+            response = await client.post(
+                "https://r.jina.ai/",
+                headers={
+                    "Authorization": f"Bearer {os.getenv('JINA_API_KEY')}",
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                },
+                json={"url": url},
+            )
+            response.raise_for_status()
+            data = response.json()
+        
+        content = data["data"]["content"]
+        page_title = data["data"].get("title", title)
+        
+        return self.save_markdown(
+            url=url,
+            content=content,
+            source="jina",
+            metadata={"title": page_title},
+        )
     
     def save_exa_result(self, exa_item: dict) -> Path:
-        """
-        Save an Exa search result.
-        
-        Args:
-            exa_item: dict with url, title, text, summary, published_date, score
-        
-        Returns:
-            Path to saved content file
-        """
+        """Save an Exa search result."""
         url = exa_item["url"]
         
-        # Build markdown content
         content = f"# {exa_item.get('title', 'Untitled')}\n\n"
         content += f"**URL:** {url}\n"
         content += f"**Published:** {exa_item.get('published_date', 'unknown')}\n\n"
@@ -150,7 +162,6 @@ class ContentSaver:
             content += f"## Summary\n\n{exa_item['summary']}\n\n---\n\n"
         content += f"## Full Content\n\n{exa_item.get('text', 'No content')}\n"
         
-        # Save with metadata
         return self.save_markdown(
             url=url,
             content=content,
@@ -163,27 +174,7 @@ class ContentSaver:
             },
         )
     
-    def save_web_content(self, url: str, content: str, title: str | None = None) -> Path:
-        """
-        Save web content fetched via Jina or similar.
-        
-        Args:
-            url: The source URL
-            content: The markdown content
-            title: Optional page title
-        
-        Returns:
-            Path to saved file
-        """
-        return self.save_markdown(
-            url=url,
-            content=content,
-            source="jina",
-            metadata={"title": title},
-        )
-    
     def count(self) -> int:
-        """Number of stored items."""
         return len(self.index)
     
     def __contains__(self, url: str) -> bool:
