@@ -124,7 +124,7 @@ class GmailSender:
             # Handle markdown conversion
             if markdown_mode:
                 # Convert markdown to HTML
-                content = markdown.markdown(content)
+                content = markdown.markdown(content, extensions=['tables'])
                 content_type = 'html'
             elif html:
                 content_type = 'html'
