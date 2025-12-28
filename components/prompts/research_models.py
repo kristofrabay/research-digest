@@ -1,6 +1,5 @@
 from pydantic import BaseModel, Field
 
-
 class ResearchItem(BaseModel):
     """A single discovered research item."""
     url: str = Field(description="The full URL to the content")
@@ -13,4 +12,3 @@ class ResearchItem(BaseModel):
 class ResearchResults(BaseModel):
     """Structured output from a research agent."""
     items: list[ResearchItem] = Field(description="List of discovered research items")
-
