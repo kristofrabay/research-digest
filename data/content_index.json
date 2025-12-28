@@ -2095,5 +2095,65 @@
     "summary": "No answer found",
     "published_date": null,
     "score": null
+  },
+  "https://blog.google/products/gemini/gemini-3/": {
+    "content_path": "../data/contents/39d91b15c6d3876b.md",
+    "source": "jina",
+    "saved_at": "2025-12-28T12:40:23.920433",
+    "title": "A new era of intelligence with Gemini 3"
+  },
+  "https://openai.com/index/introducing-gpt-5-2/": {
+    "content_path": "../data/contents/98e47f285e915a34.md",
+    "source": "jina",
+    "saved_at": "2025-12-28T12:40:24.609277",
+    "title": "Introducing GPT-5.2"
+  },
+  "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills": {
+    "content_path": "../data/contents/2e50ab69ebea3b2c.md",
+    "source": "jina",
+    "saved_at": "2025-12-28T12:40:24.774502",
+    "title": "Equipping agents for the real world with Agent Skills"
+  },
+  "https://openai.com/index/gpt-5-2-codex": {
+    "content_path": "../data/contents/bcec01148b652923.md",
+    "source": "jina",
+    "saved_at": "2025-12-28T12:40:25.209071",
+    "title": "Introducing GPT-5.2-Codex"
+  },
+  "https://arxiv.org/abs/2512.10573v1": {
+    "content_path": "../data/contents/2512.10573v1.md",
+    "pdf_path": "../data/contents/2512.10573v1.pdf",
+    "source": "arxiv",
+    "saved_at": "2025-12-28T12:42:39.178329",
+    "title": "Is the Information Bottleneck Robust Enough? Towards Label-Noise Resistant Information Bottleneck Learning",
+    "abstract": "Summary: The Information Bottleneck (IB) principle facilitates effective representation learning by preserving label-relevant information while compressing irrelevant information. However, its strong reliance on accurate labels makes it inherently vulnerable to label noise, prevalent in real-world scenarios, resulting in significant performance degradation and overfitting. To address this issue, we propose LaT-IB, a novel Label-Noise ResistanT Information Bottleneck method which introduces a \"Minimal-Sufficient-Clean\" (MSC) criterion. Instantiated as a mutual information regularizer to retain task-relevant information while discarding noise, MSC addresses standard IB's vulnerability to noisy label supervision. To achieve this, LaT-IB employs a noise-aware latent disentanglement that decomposes the latent representation into components aligned with to the clean label space and the noise space. Theoretically, we first derive mutual information bounds for each component of our objective including prediction, compression, and disentanglement, and moreover prove that optimizing it encourages representations invariant to input noise and separates clean and noisy label information. Furthermore, we design a three-phase training framework: Warmup, Knowledge Injection and Robust Training, to progressively guide the model toward noise-resistant representations. Extensive experiments demonstrate that LaT-IB achieves superior robustness and efficiency under label noise, significantly enhancing robustness and applicability in real-world scenarios with label noise.",
+    "paper_id": "2512.10573v1"
+  },
+  "https://arxiv.org/abs/2512.10547v1": {
+    "content_path": "../data/contents/2512.10547v1.md",
+    "pdf_path": "../data/contents/2512.10547v1.pdf",
+    "source": "arxiv",
+    "saved_at": "2025-12-28T12:42:40.950431",
+    "title": "Unlocking the Address Book: Dissecting the Sparse Semantic Structure of LLM Key-Value Caches via Sparse Autoencoders",
+    "abstract": "Summary: The Key-Value (KV) cache is the primary memory bottleneck in long-context Large Language Models, yet it is typically treated as an opaque numerical tensor. In this work, we propose \\textbf{STA-Attention}, a framework that utilizes Top-K Sparse Autoencoders (SAEs) to decompose the KV cache into interpretable ``semantic atoms.'' Unlike standard $L_1$-regularized SAEs, our Top-K approach eliminates shrinkage bias, preserving the precise dot-product geometry required for attention. Our analysis uncovers a fundamental \\textbf{Key-Value Asymmetry}: while Key vectors serve as highly sparse routers dominated by a ``Semantic Elbow,'' deep Value vectors carry dense content payloads requiring a larger budget. Based on this structure, we introduce a Dual-Budget Strategy that selectively preserves the most informative semantic components while filtering representational noise. Experiments on Yi-6B, Mistral-7B, Qwen2.5-32B, and others show that our semantic reconstructions maintain perplexity and zero-shot performance comparable to the original models, effectively bridging the gap between mechanistic interpretability and faithful attention modeling.",
+    "paper_id": "2512.10547v1"
+  },
+  "https://arxiv.org/abs/2512.10561v1": {
+    "content_path": "../data/contents/2512.10561v1.md",
+    "pdf_path": "../data/contents/2512.10561v1.pdf",
+    "source": "arxiv",
+    "saved_at": "2025-12-28T12:42:45.577765",
+    "title": "Causal Reasoning Favors Encoders: On The Limits of Decoder-Only Models",
+    "abstract": "Summary: In context learning (ICL) underpins recent advances in large language models (LLMs), although its role and performance in causal reasoning remains unclear. Causal reasoning demands multihop composition and strict conjunctive control, and reliance on spurious lexical relations of the input could provide misleading results. We hypothesize that, due to their ability to project the input into a latent space, encoder and encoder decoder architectures are better suited for said multihop conjunctive reasoning versus decoder only models. To do this, we compare fine-tuned versions of all the aforementioned architectures with zero and few shot ICL in both natural language and non natural language scenarios. We find that ICL alone is insufficient for reliable causal reasoning, often overfocusing on irrelevant input features. In particular, decoder only models are noticeably brittle to distributional shifts, while finetuned encoder and encoder decoder models can generalize more robustly across our tests, including the non natural language split. Both architectures are only matched or surpassed by decoder only architectures at large scales. We conclude by noting that for cost effective, short horizon robust causal reasoning, encoder or encoder decoder architectures with targeted finetuning are preferable.",
+    "paper_id": "2512.10561v1"
+  },
+  "https://arxiv.org/abs/2512.10563v1": {
+    "content_path": "../data/contents/2512.10563v1.md",
+    "pdf_path": "../data/contents/2512.10563v1.pdf",
+    "source": "arxiv",
+    "saved_at": "2025-12-28T12:42:45.912206",
+    "title": "NormCode: A Semi-Formal Language for Context-Isolated AI Planning",
+    "abstract": "Summary: Multistep workflows that chain large language model (LLM) calls suffer from context pollution: as information accumulates across steps, models hallucinate, confuse intermediate outputs, and lose track of task constraints. We present NormCode, a semiformal language for constructing plans of inferences, structured decompositions where each step operates in data isolation and receives only explicitly passed inputs, which eliminates crossstep contamination by design. NormCode enforces a strict separation between semantic operations (LLMdriven reasoning, nondeterministic) and syntactic operations (deterministic data restructuring), enabling precise cost and reliability tracing. The language exists in three isomorphic formats: .ncds for human authoring, .ncd for machine execution, and .ncn for human verification, supporting progressive formalization from sketch to production. We validate NormCode through two demonstrations: (1) a base X addition algorithm achieving 100 percent accuracy on arbitrary length inputs, and (2) self hosted execution of NormCode's own five phase compiler pipeline. The working orchestrator provides dependency driven scheduling, SQLite backed checkpointing, and loop management, making AI workflows auditable by design and addressing a critical need for transparency in high stakes domains such as legal reasoning, medical decision making, and financial analysis.",
+    "paper_id": "2512.10563v1"
   }
 }

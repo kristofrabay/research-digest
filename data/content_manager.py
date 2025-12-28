@@ -115,8 +115,8 @@ class ContentManager:
             "source": "arxiv",
             "saved_at": datetime.now().isoformat(),
             "title": title,
-            "abstract": abstract,
-            "paper_id": paper_id,
+            #"abstract": abstract,
+            #"paper_id": paper_id,
         }
         self._save_index()
         
