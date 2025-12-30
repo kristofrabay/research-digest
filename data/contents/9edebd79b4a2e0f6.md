@@ -7,18 +7,29 @@
 
 ## Summary
 
-The provided webpage describes the **Model Context Protocol (MCP)**, which is an open specification for connecting large language model clients (like ChatGPT) to external tools and resources.
+The provided web page describes the **Model Context Protocol (MCP)**, which is an open specification for connecting large language model clients to external tools and resources.
 
-Here is a summary of the key concepts mentioned in the text that relate to your query:
+**Key aspects of MCP mentioned on the page:**
 
-*   **MCP Servers:** An MCP server exposes **tools** that a model can call during a conversation.
-*   **Tool Use:** The protocol supports listing tools (with JSON Schema contracts), calling tools with arguments, and returning structured content/results.
-*   **Structured Outputs:** Tool execution returns structured content that the model can parse.
-*   **Agent Frameworks/SDKs:** The text specifically mentions the **Apps SDK** (which uses MCP as its backbone) and references official SDKs for **Python** and **TypeScript**.
-*   **Agent Orchestration/Memory:** While the text doesn't explicitly use the terms "agent memory" or "agent orchestration," it describes how MCP enables **Conversation awareness** (structured content and component state flow through the conversation) and **Discovery integration** (the model reasons about the app like built-in tools), which are core components of agentic systems.
-*   **Function Calling:** This is directly supported by the "Call tools" capability of the protocol.
+*   **Purpose:** An MCP server exposes **tools** that a model can call during a conversation, returning results with specified parameters. It also allows returning metadata, such as inline HTML for rendering interfaces via the Apps SDK.
+*   **Role with Apps SDK:** MCP is the backbone that keeps the server, model, and UI in sync, allowing ChatGPT to reason about your app similarly to built-in tools by standardizing wire format, authentication, and metadata.
+*   **Protocol Building Blocks:** A minimal MCP server implements:
+    1.  **List tools:** Advertises supported tools, including their JSON Schema input/output contracts.
+    2.  **Call tools:** Executes actions requested by the model and returns structured content.
+    3.  **Return components:** Optionally points to an embedded resource representing the interface to render in the client.
+*   **Benefits of using MCP:** Discovery integration, conversation awareness (state flows through the conversation), multiclient support (works across web and mobile), and extensible authentication.
 
-**Missing Information:** The text **does not** mention: `agent_infrastructure`, `agent memory`, `agentic memory`, `LangChain`, `LlamaIndex`, `OpenAI Agents SDK`, `Anthropic Agents SDK`, `Google SDK`, or `inline html` (though it mentions returning components/embedded resources).
+**Regarding your specific query terms:**
+
+The page explicitly mentions **MCP Server** and **tool use** (via tool calling). It also mentions **function calling** implicitly through the description of tool calling with JSON Schema contracts.
+
+However, the page **does not** contain information about: `agent_infrastructure`, `deep research`, `agent memory`, `agentic memory`, `context compression`, `agent frameworks`, `LangChain`, `LlamaIndex`, `OpenAI Agents SDK`, `Anthropic Agents SDK`, `Google SDK`, `structured outputs` (beyond the tool contract), `agent orchestration`, `agent evaluations`, `LLM reasoning trace evaluation`, `prompt engineering`, `context engineering`, `long context`, `supervised fine-tuning`, or `reinforcement learning`.
+
+**Summary based on the query:**
+
+The page explains that **MCP (Model Context Protocol)** is a specification for connecting LLM clients to external tools, enabling **tool use** via a server that advertises tools and handles `call_tool` requests. It is the foundation for the Apps SDK.
+
+**No answer found** for the majority of the specific agent infrastructure and advanced LLM training/engineering terms listed in your
 
 ---
 
@@ -50,23 +61,26 @@ Clear
 * [Fine-tuning](https://developers.openai.com/resources/fine-tuning)
 * [Scaling](https://developers.openai.com/resources/scaling)
 ### Getting Started
-* [Home](https://developers.openai.com/codex)
+* [Overview](https://developers.openai.com/codex)
 * [Quickstart](https://developers.openai.com/codex/quickstart)
 * [Pricing](https://developers.openai.com/codex/pricing)
 * Concepts
-* [Tasks &amp; Prompts](https://developers.openai.com/codex/concepts)
+* [Prompting](https://developers.openai.com/codex/prompting)
+* [Workflows](https://developers.openai.com/codex/workflows)
 * [Models](https://developers.openai.com/codex/models)
-* [Sandboxing](https://developers.openai.com/codex/sandbox)
-* [Build AI-Native Teams](https://developers.openai.com/codex/guides/build-ai-native-engineering-team)
+* [AI-Native Teams](https://developers.openai.com/codex/guides/build-ai-native-engineering-team)
 ### Using Codex
 * IDE Extension
 * [Overview](https://developers.openai.com/codex/ide)
 * [Features](https://developers.openai.com/codex/ide/features)
+* [Settings](https://developers.openai.com/codex/ide/settings)
+* [IDE Commands](https://developers.openai.com/codex/ide/commands)
+* [Slash commands](https://developers.openai.com/codex/ide/slash-commands)
 * CLI
 * [Overview](https://developers.openai.com/codex/cli)
 * [Features](https://developers.openai.com/codex/cli/features)
 * [Command Line Options](https://developers.openai.com/codex/cli/reference)
-* [Slash commands](https://developers.openai.com/codex/guides/slash-commands)
+* [Slash commands](https://developers.openai.com/codex/cli/slash-commands)
 * Web
 * [Overview](https://developers.openai.com/codex/cloud)
 * [Environments](https://developers.openai.com/codex/cloud/environments)
@@ -76,23 +90,31 @@ Clear
 * [Slack](https://developers.openai.com/codex/integrations/slack)
 * [Linear](https://developers.openai.com/codex/integrations/linear)
 ### Configuration
-* [Config File](https://developers.openai.com/codex/local-config)
-* [Instructions](https://developers.openai.com/codex/guides/agents-md)
+* Config File
+* [Basic Config](https://developers.openai.com/codex/config-basic)
+* [Advanced Config](https://developers.openai.com/codex/config-advanced)
+* [Config Reference](https://developers.openai.com/codex/config-reference)
+* [Sample Config](https://developers.openai.com/codex/config-sample)
+* [Execution Policy](https://developers.openai.com/codex/exec-policy)
+* [AGENTS.md](https://developers.openai.com/codex/guides/agents-md)
 * [MCP](https://developers.openai.com/codex/mcp)
 * Skills
 * [Overview](https://developers.openai.com/codex/skills)
 * [Create skills](https://developers.openai.com/codex/skills/create-skill)
-### Deployment &amp; Admin
-* [Administration](https://developers.openai.com/codex/enterprise)
-* [Authentication](https://developers.openai.com/codex/guides/api-key)
+### Administration
+* [Authentication](https://developers.openai.com/codex/auth)
 * [Security](https://developers.openai.com/codex/security)
+* [Enterprise](https://developers.openai.com/codex/enterprise)
 * [Windows](https://developers.openai.com/codex/windows)
 ### Automation
+* [Non-interactive Mode](https://developers.openai.com/codex/noninteractive)
 * [Codex SDK](https://developers.openai.com/codex/sdk)
 * [MCP Server](https://developers.openai.com/codex/guides/agents-sdk)
 * [GitHub Action](https://developers.openai.com/codex/github-action)
 ### Releases
 * [Changelog](https://developers.openai.com/codex/changelog)
+* [Feature Maturity](https://developers.openai.com/codex/feature-maturity)
+* [Open Source](https://developers.openai.com/codex/open-source)
 * [Home](https://developers.openai.com/apps-sdk)
 * [Quickstart](https://developers.openai.com/apps-sdk/quickstart)
 ### Core Concepts
