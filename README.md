@@ -171,3 +171,25 @@ The final digest contains:
 
 Each item includes a summary, key takeaways tailored to the configured focus areas, and a direct link to the source.
 
+## Development
+
+The project was developed in Jupyter notebooks then converted to scripts for execution.
+
+To convert notebooks to scripts:
+
+```bash
+
+# 1st step
+mkdir -p scripts && for nb in nbs/[0-9]*.ipynb; do python3 -m 
+nbconvert --to script "$nb" --output "../scripts/$(basename "${nb%.
+ipynb}")"; done
+
+# 2nd step
+
+cd scripts
+sed -i '' "s|'../data'|'data'|g" *.py
+sed -i '' 's|"../data|"data|g' *.py
+sed -i '' "s|append('../')|append('.')|g" *.py
+```
+
+After that continuous testing and iteration is still done in notebooks, then scripts get updated ad hoc.
