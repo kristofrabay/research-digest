@@ -142,6 +142,8 @@ class ContentManager:
         
         content = data["data"]["content"]
         page_title = data["data"].get("title", title)
+
+        logger.info(f"Saved via Jina: {url}")
         
         return self.save_markdown(
             url=url,

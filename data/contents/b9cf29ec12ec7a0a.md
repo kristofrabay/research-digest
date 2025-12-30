@@ -1,7 +1,7 @@
 # How to add PDF understanding to your AI Agent
 
 **URL:** https://www.asterlabs.ai/blog/pdf-understanding
-**Published:** 2024-12-15T07:46:56.000Z
+**Published:** 2024-12-15T00:00:00.000Z
 
 ---
 
