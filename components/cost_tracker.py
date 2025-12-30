@@ -12,7 +12,13 @@ PRICING = {
         "gpt-5.2": {"input": 1.75, "cached_input": 0.175, "output": 14.00},
     },
     "anthropic": {
-        "claude-opus-4-5-20251101": {"input": 5.00, "output": 25.00},
+        "claude-opus-4-5-20251101": {
+            "input": 5.00,
+            "cache_write_5m": 6.25,
+            "cache_write_1h": 10.00,
+            "cache_read": 0.50,
+            "output": 25.00,
+        },
     },
     "jina": {
         "reader": {"tokens": 0.05},  # per 1M tokens
@@ -56,23 +62,39 @@ class CostTracker:
         ))
     
     def add_anthropic(self, step: str, model: str, usage):
-        """Add Anthropic usage"""
+        """Add Anthropic usage with full cache breakdown"""
         input_tokens = usage.input_tokens
         output_tokens = usage.output_tokens
-        cached_read = getattr(usage, 'cache_read_input_tokens', 0) or 0
+        
+        # Cache tokens from Usage object
+        cache_read = getattr(usage, 'cache_read_input_tokens', 0) or 0
+        cache_creation = getattr(usage, 'cache_creation_input_tokens', 0) or 0
+        
+        # Detailed cache from cache_creation object if available
+        cache_obj = getattr(usage, 'cache_creation', None)
+        cache_5m = getattr(cache_obj, 'ephemeral_5m_input_tokens', 0) or 0 if cache_obj else 0
+        cache_1h = getattr(cache_obj, 'ephemeral_1h_input_tokens', 0) or 0 if cache_obj else 0
+        
+        # If cache_creation_input_tokens is set but not broken down, assume 5m
+        if cache_creation > 0 and cache_5m == 0 and cache_1h == 0:
+            cache_5m = cache_creation
         
         pricing = PRICING["anthropic"].get(model, PRICING["anthropic"]["claude-opus-4-5-20251101"])
-        # Anthropic: cached read is 10% of input price
+        
+        # Calculate cost with proper cache pricing
+        base_input = input_tokens - cache_read  # Non-cached input
         cost = (
-            (input_tokens - cached_read) / 1_000_000 * pricing["input"]
-            + cached_read / 1_000_000 * pricing["input"] * 0.1
+            base_input / 1_000_000 * pricing["input"]
+            + cache_5m / 1_000_000 * pricing["cache_write_5m"]
+            + cache_1h / 1_000_000 * pricing["cache_write_1h"]
+            + cache_read / 1_000_000 * pricing["cache_read"]
             + output_tokens / 1_000_000 * pricing["output"]
         )
         
         self.entries.append(CostEntry(
             provider="anthropic", model=model, step=step,
             input_tokens=input_tokens, output_tokens=output_tokens,
-            cached_tokens=cached_read, cost_usd=cost,
+            cached_tokens=cache_read, cost_usd=cost,
         ))
     
     def add_exa(self, step: str, cost_dollars):
@@ -143,6 +165,106 @@ class CostTracker:
         existing.append({"run": self.started_at.isoformat(), **self.summary()})
         p.write_text(json.dumps(existing, indent=2))
         logger.info(f"Saved cost data to {path}")
+    
+    def save_current_run(self, path: str = "data/costs_current_run.json"):
+        """Save/append costs for current run (used across subprocess calls)"""
+        p = Path(path)
+        existing = json.loads(p.read_text()) if p.exists() else []
+        
+        # Add entries from this tracker instance
+        for e in self.entries:
+            existing.append({
+                "provider": e.provider,
+                "model": e.model,
+                "step": e.step,
+                "input_tokens": e.input_tokens,
+                "output_tokens": e.output_tokens,
+                "cached_tokens": e.cached_tokens,
+                "cost_usd": e.cost_usd,
+            })
+        
+        p.write_text(json.dumps(existing, indent=2))
+    
+    @staticmethod
+    def load_current_run(path: str = "data/costs_current_run.json") -> dict:
+        """Load and summarize costs from current run file"""
+        p = Path(path)
+        if not p.exists():
+            return {"total_usd": 0, "by_provider": {}, "by_step": {}}
+        
+        entries = json.loads(p.read_text())
+        
+        total = sum(e["cost_usd"] for e in entries)
+        by_provider = {}
+        by_step = {}
+        
+        for e in entries:
+            by_provider[e["provider"]] = by_provider.get(e["provider"], 0) + e["cost_usd"]
+            by_step[e["step"]] = by_step.get(e["step"], 0) + e["cost_usd"]
+        
+        return {
+            "total_usd": round(total, 4),
+            "by_provider": {k: round(v, 4) for k, v in sorted(by_provider.items())},
+            "by_step": {k: round(v, 4) for k, v in sorted(by_step.items())},
+        }
+    
+    @staticmethod
+    def format_current_run_for_email(path: str = "data/costs_current_run.json") -> str:
+        """Format current run costs as HTML for email digest"""
+        s = CostTracker.load_current_run(path)
+        
+        if s["total_usd"] == 0:
+            return "<p><em>No cost data available for this run.</em></p>"
+        
+        provider_rows = "".join(
+            f"<tr><td>{k}</td><td>${v:.4f}</td></tr>" 
+            for k, v in s["by_provider"].items()
+        )
+        step_rows = "".join(
+            f"<tr><td>{k}</td><td>${v:.4f}</td></tr>" 
+            for k, v in s["by_step"].items()
+        )
+        
+        return f"""
+<h3>💰 Run Cost: ${s['total_usd']:.4f}</h3>
+<table style="display: inline-block; vertical-align: top; margin-right: 40px;">
+  <tr><th colspan="2">By Provider</th></tr>
+  {provider_rows}
+  <tr style="font-weight: bold;"><td>Total</td><td>${s['total_usd']:.4f}</td></tr>
+</table>
+<table style="display: inline-block; vertical-align: top;">
+  <tr><th colspan="2">By Step</th></tr>
+  {step_rows}
+  <tr style="font-weight: bold;"><td>Total</td><td>${s['total_usd']:.4f}</td></tr>
+</table>
+"""
+    
+    @staticmethod
+    def clear_current_run(path: str = "data/costs_current_run.json"):
+        """Clear current run file (call at pipeline start)"""
+        p = Path(path)
+        if p.exists():
+            p.unlink()
+    
+    @staticmethod
+    def archive_current_run(
+        current_path: str = "data/costs_current_run.json",
+        archive_path: str = "data/costs.json"
+    ):
+        """Archive current run to historical costs file"""
+        current = Path(current_path)
+        if not current.exists():
+            return
+        
+        summary = CostTracker.load_current_run(current_path)
+        summary["run"] = datetime.now().isoformat()
+        
+        archive = Path(archive_path)
+        existing = json.loads(archive.read_text()) if archive.exists() else []
+        existing.append(summary)
+        archive.write_text(json.dumps(existing, indent=2))
+        
+        logger.info(f"Archived run costs to {archive_path}")
 
 
 # Global instance

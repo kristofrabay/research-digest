@@ -12,6 +12,8 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+from components.cost_tracker import get_tracker
+
 
 class ContentManager:
     """
@@ -142,6 +144,11 @@ class ContentManager:
         
         content = data["data"]["content"]
         page_title = data["data"].get("title", title)
+        
+        # Track Jina cost from response meta
+        if "meta" in data and "usage" in data["meta"]:
+            tokens = data["meta"]["usage"].get("tokens", 0)
+            get_tracker().add_jina("loading", tokens)
 
         logger.info(f"Saved via Jina: {url}")
         

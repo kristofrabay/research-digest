@@ -9,6 +9,7 @@ from tenacity import retry, wait_random_exponential, stop_after_attempt, retry_i
 from pydantic import ValidationError 
 from components.prompts.scout_model import ScoutDecision
 from components.prompts.scout_agent import get_scout_system_prompt, get_scout_user_prompt
+from components.cost_tracker import get_tracker
 
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -63,6 +64,10 @@ async def _scout_item_with_retry(user_message: str) -> ScoutDecision:
     async with concurrency_semaphore:
         async with openai_limiter:
             result = await Runner.run(scout_agent, user_message)
+            
+            # Track cost from agents SDK
+            get_tracker().add_openai("scouting", scout_agent.model, result.context_wrapper.usage)
+            
             return result.final_output
 
 

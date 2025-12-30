@@ -12,6 +12,7 @@ from components.prompts.research_agents import (
     get_research_user_prompt,
 )
 from components.prompts.research_models import ResearchResults, ResearchItem
+from components.cost_tracker import get_tracker
 
 # Secrets
 from dotenv import load_dotenv
@@ -83,6 +84,10 @@ async def search_with_openai(
                 }
             ],
         )
+        
+        # Track cost
+        get_tracker().add_openai("research", model, response.usage)
+        
         return response.output_parsed
 
 
@@ -116,6 +121,10 @@ async def search_with_anthropic(
             ],
             output_format=ResearchResults,
         )
+        
+        # Track cost
+        get_tracker().add_anthropic("research", model, response.usage)
+        
         return response.parsed_output
 
 
@@ -147,6 +156,9 @@ async def search_with_exa(
                 #"highlights": True,
             },
         )
+    
+    # Track cost
+    get_tracker().add_exa("research", result.cost_dollars)
     
     items = []
     for r in result.results:

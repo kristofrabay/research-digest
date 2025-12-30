@@ -8,6 +8,7 @@ from pydantic import ValidationError
 
 from components.prompts.curator_agent import get_curator_system_prompt, get_curator_user_prompt
 from components.prompts.curator_model import CuratorAnalysis
+from components.cost_tracker import get_tracker
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -98,6 +99,10 @@ async def curate_item(
                     ],
                     output_format=CuratorAnalysis,
                 )
+                
+                # Track cost
+                get_tracker().add_anthropic("curation", model, response.usage)
+                
                 return response.parsed_output
     except Exception as e:
         error_msg = str(e)

@@ -21,6 +21,7 @@ import seaborn as sns
 from datetime import datetime
 
 from components.agents.scout_agent import scout_batch
+from components.cost_tracker import get_tracker
 
 import logging
 logging.basicConfig(
@@ -115,6 +116,10 @@ df['scout_decision'].value_counts(dropna=False)
 
 
 df.to_csv("data/research_items.csv", index=False)
+
+# Save costs for this step
+get_tracker().save_current_run()
+logger.info("Saved scouting step costs")
 
 
 # In[ ]:

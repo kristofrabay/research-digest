@@ -25,6 +25,7 @@ logger = logging.getLogger(__name__)
 
 from components.agents.research_agents import run_mixed_research_agents
 from components.prompts.research_agents import FOCUS_AREAS
+from components.cost_tracker import get_tracker
 
 from data.dedup import deduplicate_research
 
@@ -220,6 +221,10 @@ result = deduplicate_research(
 logger.info(f"Added {result['new_added']} new items")
 logger.info(f"Skipped {result['skipped']} duplicates")
 logger.info(f"Total in DB: {result['total_after']}")
+
+# Save costs for this step
+get_tracker().save_current_run()
+logger.info("Saved research step costs")
 
 
 # In[ ]:

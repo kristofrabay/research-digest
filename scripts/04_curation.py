@@ -23,6 +23,8 @@ from components.agents.curator_agent import curate_batch
 from data import ContentManager
 manager = ContentManager(base_path="data")
 
+from components.cost_tracker import get_tracker
+
 import logging
 logging.basicConfig(
     level=logging.INFO,
@@ -169,6 +171,10 @@ else:
 
 df.to_csv("data/research_items.csv", index=False)
 logger.info(f"Saved {len(df)} items to data/research_items.csv")
+
+# Save costs for this step
+get_tracker().save_current_run()
+logger.info("Saved curation step costs")
 
 
 # In[ ]:

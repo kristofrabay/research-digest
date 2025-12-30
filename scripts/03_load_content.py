@@ -26,6 +26,8 @@ arxiv_limiter = Limiter(rate=100, capacity=100, consume=1)
 from data import ContentManager
 manager = ContentManager(base_path="data")
 
+from components.cost_tracker import get_tracker
+
 import logging
 logging.basicConfig(
     level=logging.INFO,
@@ -183,6 +185,10 @@ for pdf in Path("data/contents").glob("*.pdf"):
     logger.info(f"Deleted: {pdf.name}")
 
 show_file_stats(Path("data"))
+
+# Save costs for this step
+get_tracker().save_current_run()
+logger.info("Saved loading step costs")
 
 # In[ ]:
 

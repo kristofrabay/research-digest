@@ -5,6 +5,10 @@ import time
 from datetime import datetime
 from pathlib import Path
 
+# Add repo root to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from components.cost_tracker import CostTracker
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(message)s")
 logger = logging.getLogger(__name__)
 
@@ -30,6 +34,9 @@ def format_duration(seconds: float) -> str:
 def main():
     pipeline_start = time.time()
     start_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    # Clear cost tracking for new run
+    CostTracker.clear_current_run()
     
     logger.info(f"{'='*50}")
     logger.info(f"🚀 Pipeline started at {start_timestamp}")
@@ -59,12 +66,19 @@ def main():
     total_duration = pipeline_end - pipeline_start
     total_minutes = total_duration / 60
     
+    # Load and log cost summary
+    cost_summary = CostTracker.load_current_run()
+    
     logger.info(f"{'='*50}")
     logger.info(f"🎉 Pipeline complete!")
     logger.info(f"   Started:  {start_timestamp}")
     logger.info(f"   Finished: {end_timestamp}")
     logger.info(f"   Duration: {total_minutes:.1f} minutes ({format_duration(total_duration)})")
+    logger.info(f"   💰 Total Cost: ${cost_summary['total_usd']:.4f}")
     logger.info(f"{'='*50}")
+    
+    # Archive run costs to historical file
+    CostTracker.archive_current_run()
 
 if __name__ == "__main__":
     main()
