@@ -12,6 +12,10 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 load_dotenv()
 
 
@@ -58,7 +62,7 @@ class GmailSender:
             try:
                 creds = Credentials.from_authorized_user_file(self.token_path, self.SCOPES)
             except Exception as e:
-                print(f"Error loading token: {e}")
+                logger.error(f"Error loading token: {e}")
                 creds = None
         
         # Refresh or get new credentials
@@ -67,7 +71,7 @@ class GmailSender:
                 try:
                     creds.refresh(Request())
                 except Exception as e:
-                    print(f"Error refreshing token: {e}")
+                    logger.error(f"Error refreshing token: {e}")
                     creds = None
             
             if not creds:
@@ -89,7 +93,7 @@ class GmailSender:
         
         # Build Gmail service
         self.service = build('gmail', 'v1', credentials=creds)
-        print("✓ Gmail API authenticated successfully")
+        logger.info("✓ Gmail API authenticated successfully")
     
     def send_email(
         self,
@@ -146,15 +150,15 @@ class GmailSender:
             
             # Mask email for privacy in logs
             masked_email = f"{to[:3]}***{to[-3:]}"
-            print(f"✓ Email sent successfully to {masked_email}")
-            print(f"  Message ID: {send_result['id']}")
+            logger.info(f"✓ Email sent successfully to {masked_email}")
+            logger.info(f"  Message ID: {send_result['id']}")
             return True
             
         except HttpError as error:
-            print(f"✗ Gmail API error: {error}")
+            logger.error(f"✗ Gmail API error: {error}")
             return False
         except Exception as error:
-            print(f"✗ Error sending email: {error}")
+            logger.error(f"✗ Error sending email: {error}")
             return False
     
     def send_email_batch(
@@ -187,7 +191,7 @@ class GmailSender:
             else:
                 results['failed'] += 1
         
-        print(f"\nBatch send complete: {results['success']}/{results['total']} succeeded")
+        logger.info(f"\nBatch send complete: {results['success']}/{results['total']} succeeded")
         return results
 
 
@@ -238,6 +242,9 @@ def format_top_items(df, n=10):
 
 **Reason to read:**  
 {row['verdict_reasoning']}
+
+**Summary:**  
+{row['curator_summary']}
 
 ---
 """

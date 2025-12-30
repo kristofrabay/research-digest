@@ -97,9 +97,8 @@ def get_curator_user_prompt(
     
     # Truncate content if too long
     if len(content) > max_chars:
-        content = content[:max_chars] + "\n\n[... content truncated due to length ...]"
-
         logger.info(f"Content for {title} truncated from {len(content)} to {max_chars} characters")
+        content = content[:max_chars] + "\n\n[... content truncated due to length ...]"
     
     return f"""Analyze this research item:
 
