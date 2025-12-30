@@ -25,6 +25,7 @@ jobs:
       - name: Decode Gmail credentials
         run: |
           echo "${{ secrets.GMAIL_CLIENT_SECRET_B64 }}" | base64 -d > gmail_client_secret.json
+          echo "${{ secrets.GMAIL_TOKEN_B64 }}" | base64 -d > gmail_token.json
       
       - name: Run pipeline
         env:
@@ -32,6 +33,7 @@ jobs:
           #LC_ALL: C.UTF-8
           #LANG: C.UTF-8
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_AGENTS_DISABLE_TRACING: ${{ secrets.OPENAI_AGENTS_DISABLE_TRACING }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           EXA_API_KEY: ${{ secrets.EXA_API_KEY }}
           JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
