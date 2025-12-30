@@ -114,7 +114,7 @@ digest_body = f"""
 
 
 send_results = sender.send_email_batch(
-    recipients=eval(os.getenv("EMAIL_TO")),
+    recipients=eval(os.getenv("GMAIL_EMAIL_TO")),
     subject=f"Research Digest - {pd.Timestamp.now().strftime('%B %d, %Y')}",
     content=digest_body,
     html=True,
