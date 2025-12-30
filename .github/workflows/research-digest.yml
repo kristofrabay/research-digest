@@ -34,7 +34,7 @@ jobs:
           JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
           VOYAGE_API_KEY: ${{ secrets.VOYAGE_API_KEY }}
           GMAIL_EMAIL_TO: ${{ secrets.GMAIL_EMAIL_TO }}
-        run: python scripts/run_pipeline.py
+        run: uv run python scripts/run_pipeline.py
       
       - name: Commit results
         run: |
