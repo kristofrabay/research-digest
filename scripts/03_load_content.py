@@ -33,6 +33,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # In[2]:
 
@@ -179,6 +182,7 @@ for pdf in Path("data/contents").glob("*.pdf"):
     pdf.unlink()
     logger.info(f"Deleted: {pdf.name}")
 
+show_file_stats(Path("data"))
 
 # In[ ]:
 

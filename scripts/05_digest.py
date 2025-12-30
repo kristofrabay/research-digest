@@ -27,8 +27,8 @@ from components.email.gmail_sender import (
     format_remaining_table
 )
 sender = GmailSender(
-    credentials_path="../gmail_client_secret.json",
-    token_path="../gmail_token.json"
+    credentials_path="gmail_client_secret.json",
+    token_path="gmail_token.json"
 )
 
 import logging

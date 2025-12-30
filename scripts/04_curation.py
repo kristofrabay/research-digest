@@ -50,7 +50,7 @@ df = pd.read_csv("data/research_items.csv")
 # In[3]:
 
 
-MAX_ATTEMPTS = 7
+MAX_ATTEMPTS = 5
 attempt = 0
 
 while attempt < MAX_ATTEMPTS:
@@ -83,7 +83,22 @@ while attempt < MAX_ATTEMPTS:
     for _, row in to_curate.iterrows():
         content_info = manager.get(row["url"])
         if content_info and "content_path" in content_info:
-            content = Path(content_info["content_path"]).read_text()
+            # Handle both ../data (notebooks) and data (scripts) paths
+            raw_path = content_info["content_path"]
+            content_path = Path(raw_path)
+            
+            if not content_path.exists():
+                # Try alternative path
+                if raw_path.startswith("../data"):
+                    content_path = Path(raw_path.replace("../data", "data", 1))
+                elif raw_path.startswith("data"):
+                    content_path = Path("../" + raw_path)
+            
+            if not content_path.exists():
+                logger.warning(f"Content file not found: {raw_path}")
+                continue
+                
+            content = content_path.read_text()
             items.append({
                 "title": row["title"],
                 "source": row["source"],
@@ -153,6 +168,7 @@ else:
 
 
 df.to_csv("data/research_items.csv", index=False)
+logger.info(f"Saved {len(df)} items to data/research_items.csv")
 
 
 # In[ ]:
@@ -164,32 +180,31 @@ df.to_csv("data/research_items.csv", index=False)
 # In[5]:
 
 
-fig, axes = plt.subplots(3, 1, figsize=(8, 12))
-
+#fig, axes = plt.subplots(3, 1, figsize=(8, 12))
 # Applicability Score
-sns.histplot(df['applicability_score'].dropna(), bins=range(1, 12), kde=False, ax=axes[0], color='steelblue', discrete=True)
-axes[0].set_xlabel('Applicability Score', fontsize=12)
-axes[0].set_ylabel('Count', fontsize=12)
-axes[0].set_title('Distribution of Applicability Scores', fontsize=14, fontweight='bold')
-axes[0].set_xlim(0.5, 10.5)
-axes[0].grid(axis='y', alpha=0.3)
+#sns.histplot(df['applicability_score'].dropna(), bins=range(1, 12), kde=False, ax=axes[0], color='steelblue', discrete=True)
+#axes[0].set_xlabel('Applicability Score', fontsize=12)
+#axes[0].set_ylabel('Count', fontsize=12)
+#axes[0].set_title('Distribution of Applicability Scores', fontsize=14, fontweight='bold')
+#axes[0].set_xlim(0.5, 10.5)
+#axes[0].grid(axis='y', alpha=0.3)
 
 # Novelty Score
-sns.histplot(df['novelty_score'].dropna(), bins=range(1, 12), kde=False, ax=axes[1], color='coral', discrete=True)
-axes[1].set_xlabel('Novelty Score', fontsize=12)
-axes[1].set_ylabel('Count', fontsize=12)
-axes[1].set_title('Distribution of Novelty Scores', fontsize=14, fontweight='bold')
-axes[1].set_xlim(0.5, 10.5)
-axes[1].grid(axis='y', alpha=0.3)
+#sns.histplot(df['novelty_score'].dropna(), bins=range(1, 12), kde=False, ax=axes[1], color='coral', discrete=True)
+#axes[1].set_xlabel('Novelty Score', fontsize=12)
+#axes[1].set_ylabel('Count', fontsize=12)
+#axes[1].set_title('Distribution of Novelty Scores', fontsize=14, fontweight='bold')
+#axes[1].set_xlim(0.5, 10.5)
+#axes[1].grid(axis='y', alpha=0.3)
 
 # Priority Score
-sns.histplot(df['priority_score'].dropna(), bins=range(1, 12), kde=False, ax=axes[2], color='seagreen', discrete=True)
-axes[2].set_xlabel('Priority Score', fontsize=12)
-axes[2].set_ylabel('Count', fontsize=12)
-axes[2].set_title('Distribution of Priority Scores', fontsize=14, fontweight='bold')
-axes[2].set_xlim(0.5, 10.5)
-axes[2].grid(axis='y', alpha=0.3)
+#sns.histplot(df['priority_score'].dropna(), bins=range(1, 12), kde=False, ax=axes[2], color='seagreen', discrete=True)
+#axes[2].set_xlabel('Priority Score', fontsize=12)
+#axes[2].set_ylabel('Count', fontsize=12)
+#axes[2].set_title('Distribution of Priority Scores', fontsize=14, fontweight='bold')
+#axes[2].set_xlim(0.5, 10.5)
+#axes[2].grid(axis='y', alpha=0.3)
 
-plt.tight_layout()
-plt.show()
+#plt.tight_layout()
+#plt.show()
 

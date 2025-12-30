@@ -128,13 +128,13 @@ df.to_csv("data/research_items.csv", index=False)
 # In[9]:
 
 
-fig, ax = plt.subplots(figsize=(10, 6))
-sns.histplot(df['scout_confidence'], bins=35, kde=True, ax=ax, color='steelblue')
-ax.set_xlabel('Scout Confidence', fontsize=12)
-ax.set_ylabel('Count', fontsize=12)
-ax.set_title('Distribution of Scout Confidence Scores', fontsize=14, fontweight='bold')
-ax.set_xlim(left=0.5)
-ax.grid(axis='y', alpha=0.3)
-plt.tight_layout()
-plt.show()
+#fig, ax = plt.subplots(figsize=(10, 6))
+#sns.histplot(df['scout_confidence'], bins=35, kde=True, ax=ax, color='steelblue')
+#ax.set_xlabel('Scout Confidence', fontsize=12)
+#ax.set_ylabel('Count', fontsize=12)
+#ax.set_title('Distribution of Scout Confidence Scores', fontsize=14, fontweight='bold')
+#ax.set_xlim(left=0.5)
+#ax.grid(axis='y', alpha=0.3)
+#plt.tight_layout()
+#plt.show()
 
