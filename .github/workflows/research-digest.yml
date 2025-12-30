@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install uv
-          uv pip install --system -r requirements.txt
+          uv sync --frozen
       
       - name: Decode Gmail credentials
         run: |
