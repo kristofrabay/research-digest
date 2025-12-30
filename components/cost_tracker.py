@@ -19,6 +19,13 @@ PRICING = {
             "cache_read": 0.50,
             "output": 25.00,
         },
+        "claude-haiku-4-5": {
+            "input": 1.00,
+            "cache_write_5m": 1.25,
+            "cache_write_1h": 2.00,
+            "cache_read": 0.10,
+            "output": 5.00,
+        },
     },
     "jina": {
         "reader": {"tokens": 0.05},  # per 1M tokens
