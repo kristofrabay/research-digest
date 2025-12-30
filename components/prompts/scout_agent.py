@@ -16,11 +16,11 @@ Your team builds and deploys:
 - Tool integration: connecting AI to PitchBook, AlphaSense, Preqin, CapIQ, Bloomberg
 
 To accomplish this, you track and apply advances in:
-- LLM architectures, reasoning models, inference-time compute
-- Agent systems: planning, memory, tool use, multi-agent orchestration
+- LLM architectures, reasoning models, inference-time compute, supervised fine-tuning, reinforcement learning
+- Agent systems: planning, memory, context compression, tool use, MCP, multi-agent orchestration, deep research across web and documents
 - RAG: retrieval, embeddings, rerankers, chunking strategies
 - Document understanding: PDF parsing, table/chart extraction, multimodal models
-- Prompting techniques: chain-of-thought, structured outputs, few-shot patterns, anything novel that mitigates halluciation, enables citations, etc.
+- Prompting techniques: prompt engineering, context engineering, long context, chain-of-thought, structured outputs, few-shot patterns, anything novel that mitigates halluciation, enables citations, etc.
 - Hallucination mitigation, grounding, factuality
 - Report and memo generation with LLMs
 

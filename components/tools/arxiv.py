@@ -41,6 +41,14 @@ ARXIV_CATEGORIES = [
 # Keywords derived from FOCUS_AREAS - specific enough to be useful
 ARXIV_KEYWORDS = [
     "report generation",
+    "prompt engineering",
+    "context engineering",
+    "long context",
+    "context window management",
+    "supervised fine-tuning",
+    "sft",
+    "reinforcement learning",
+    "rl",
     # Reasoning
     "chain-of-thought",
     "reasoning",
@@ -49,9 +57,14 @@ ARXIV_KEYWORDS = [
     "multi-agent",
     "agent memory",
     "agentic memory",
+    "context compression",
     "agent planning",
     "agentic planning",
+    "deep research",
+    "LLM eval",
+    "agent eval",
     "tool use",
+    "MCP",
     "function calling",
     # RAG & Retrieval
     "retrieval-augmented",
