@@ -1,0 +1,18 @@
+[
+  {
+    "total_usd": 53.8638,
+    "by_provider": {
+      "anthropic": 49.7301,
+      "exa": 0.425,
+      "jina": 0.032,
+      "openai": 3.6767
+    },
+    "by_step": {
+      "curation": 39.7493,
+      "loading": 0.032,
+      "research": 12.7903,
+      "scouting": 1.2921
+    },
+    "run": "2025-12-30T23:42:35.012622"
+  }
+]

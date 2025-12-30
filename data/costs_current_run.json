@@ -1,0 +1,2792 @@
+[
+  {
+    "provider": "exa",
+    "model": "deep",
+    "step": "research",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.085
+  },
+  {
+    "provider": "exa",
+    "model": "deep",
+    "step": "research",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.085
+  },
+  {
+    "provider": "exa",
+    "model": "deep",
+    "step": "research",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.085
+  },
+  {
+    "provider": "exa",
+    "model": "deep",
+    "step": "research",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.085
+  },
+  {
+    "provider": "exa",
+    "model": "deep",
+    "step": "research",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.085
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "research",
+    "input_tokens": 293904,
+    "output_tokens": 3414,
+    "cached_tokens": 0,
+    "cost_usd": 1.55487
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "research",
+    "input_tokens": 326787,
+    "output_tokens": 3408,
+    "cached_tokens": 0,
+    "cost_usd": 1.7191349999999999
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "research",
+    "input_tokens": 324271,
+    "output_tokens": 3648,
+    "cached_tokens": 0,
+    "cost_usd": 1.7125549999999998
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "research",
+    "input_tokens": 493493,
+    "output_tokens": 3716,
+    "cached_tokens": 0,
+    "cost_usd": 2.5603650000000004
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "research",
+    "input_tokens": 468753,
+    "output_tokens": 3603,
+    "cached_tokens": 0,
+    "cost_usd": 2.43384
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "research",
+    "input_tokens": 91066,
+    "output_tokens": 19104,
+    "cached_tokens": 4736,
+    "cost_usd": 0.41936229999999997
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "research",
+    "input_tokens": 97377,
+    "output_tokens": 19848,
+    "cached_tokens": 4736,
+    "cost_usd": 0.44082255000000004
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "research",
+    "input_tokens": 101138,
+    "output_tokens": 18903,
+    "cached_tokens": 0,
+    "cost_usd": 0.4416335
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "research",
+    "input_tokens": 99931,
+    "output_tokens": 23351,
+    "cached_tokens": 4736,
+    "cost_usd": 0.49433404999999997
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "research",
+    "input_tokens": 105989,
+    "output_tokens": 28779,
+    "cached_tokens": 0,
+    "cost_usd": 0.58838675
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5851,
+    "output_tokens": 282,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00531685
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5861,
+    "output_tokens": 251,
+    "cached_tokens": 3584,
+    "cost_usd": 0.00812595
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5850,
+    "output_tokens": 315,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0057771
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5843,
+    "output_tokens": 316,
+    "cached_tokens": 3584,
+    "cost_usd": 0.00900445
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5881,
+    "output_tokens": 298,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0055933499999999995
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6198,
+    "output_tokens": 341,
+    "cached_tokens": 0,
+    "cost_usd": 0.015620499999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5859,
+    "output_tokens": 353,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00632485
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6314,
+    "output_tokens": 346,
+    "cached_tokens": 0,
+    "cost_usd": 0.0158935
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5850,
+    "output_tokens": 360,
+    "cached_tokens": 5632,
+    "cost_usd": 0.006407100000000001
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5862,
+    "output_tokens": 343,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0061901
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6012,
+    "output_tokens": 383,
+    "cached_tokens": 5632,
+    "cost_usd": 0.007012599999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5864,
+    "output_tokens": 259,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0050176
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5836,
+    "output_tokens": 408,
+    "cached_tokens": 5632,
+    "cost_usd": 0.007054599999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5846,
+    "output_tokens": 383,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0067221
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6631,
+    "output_tokens": 430,
+    "cached_tokens": 0,
+    "cost_usd": 0.01762425
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5867,
+    "output_tokens": 380,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00671685
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5834,
+    "output_tokens": 398,
+    "cached_tokens": 5632,
+    "cost_usd": 0.006911100000000001
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5854,
+    "output_tokens": 355,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0063441
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5864,
+    "output_tokens": 389,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0068376
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5853,
+    "output_tokens": 415,
+    "cached_tokens": 0,
+    "cost_usd": 0.01605275
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5857,
+    "output_tokens": 361,
+    "cached_tokens": 5632,
+    "cost_usd": 0.006433349999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5842,
+    "output_tokens": 428,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0073451
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5839,
+    "output_tokens": 434,
+    "cached_tokens": 5632,
+    "cost_usd": 0.007423849999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5865,
+    "output_tokens": 472,
+    "cached_tokens": 5632,
+    "cost_usd": 0.008001349999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5837,
+    "output_tokens": 447,
+    "cached_tokens": 5632,
+    "cost_usd": 0.007602350000000001
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6285,
+    "output_tokens": 479,
+    "cached_tokens": 5632,
+    "cost_usd": 0.008834350000000001
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5861,
+    "output_tokens": 443,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00758835
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5855,
+    "output_tokens": 408,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00708785
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6572,
+    "output_tokens": 512,
+    "cached_tokens": 0,
+    "cost_usd": 0.018668999999999998
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5831,
+    "output_tokens": 374,
+    "cached_tokens": 0,
+    "cost_usd": 0.015440249999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5862,
+    "output_tokens": 378,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0066801000000000004
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5876,
+    "output_tokens": 388,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0068446
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6057,
+    "output_tokens": 445,
+    "cached_tokens": 5632,
+    "cost_usd": 0.007959349999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5846,
+    "output_tokens": 453,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0077021
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6290,
+    "output_tokens": 366,
+    "cached_tokens": 0,
+    "cost_usd": 0.0161315
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5879,
+    "output_tokens": 434,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00749385
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5847,
+    "output_tokens": 382,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00670985
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5862,
+    "output_tokens": 453,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0077301
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5858,
+    "output_tokens": 363,
+    "cached_tokens": 5632,
+    "cost_usd": 0.006463099999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5856,
+    "output_tokens": 454,
+    "cached_tokens": 5632,
+    "cost_usd": 0.007733599999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5885,
+    "output_tokens": 490,
+    "cached_tokens": 3584,
+    "cost_usd": 0.011513949999999998
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5876,
+    "output_tokens": 440,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0075726000000000005
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5862,
+    "output_tokens": 481,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0081221
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5855,
+    "output_tokens": 425,
+    "cached_tokens": 5632,
+    "cost_usd": 0.007325849999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5852,
+    "output_tokens": 577,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0094486
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5855,
+    "output_tokens": 484,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00815185
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5839,
+    "output_tokens": 465,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00785785
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5839,
+    "output_tokens": 547,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00900585
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5865,
+    "output_tokens": 431,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00742735
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5848,
+    "output_tokens": 544,
+    "cached_tokens": 5632,
+    "cost_usd": 0.008979599999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5851,
+    "output_tokens": 542,
+    "cached_tokens": 5632,
+    "cost_usd": 0.008956849999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5852,
+    "output_tokens": 430,
+    "cached_tokens": 5632,
+    "cost_usd": 0.007390600000000001
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5846,
+    "output_tokens": 389,
+    "cached_tokens": 5632,
+    "cost_usd": 0.006806100000000001
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5861,
+    "output_tokens": 413,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0071683499999999995
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6041,
+    "output_tokens": 535,
+    "cached_tokens": 5632,
+    "cost_usd": 0.009191350000000001
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5843,
+    "output_tokens": 440,
+    "cached_tokens": 0,
+    "cost_usd": 0.01638525
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5869,
+    "output_tokens": 443,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00760235
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5846,
+    "output_tokens": 409,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0070861
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5855,
+    "output_tokens": 408,
+    "cached_tokens": 0,
+    "cost_usd": 0.01595825
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5854,
+    "output_tokens": 491,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0082481
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5860,
+    "output_tokens": 419,
+    "cached_tokens": 5632,
+    "cost_usd": 0.007250599999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5848,
+    "output_tokens": 491,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0082376
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5846,
+    "output_tokens": 524,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0086961
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5869,
+    "output_tokens": 506,
+    "cached_tokens": 5632,
+    "cost_usd": 0.008484350000000002
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5992,
+    "output_tokens": 482,
+    "cached_tokens": 3584,
+    "cost_usd": 0.011589200000000001
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5856,
+    "output_tokens": 468,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0079296
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5853,
+    "output_tokens": 514,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00856835
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5859,
+    "output_tokens": 540,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00894285
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5849,
+    "output_tokens": 570,
+    "cached_tokens": 5632,
+    "cost_usd": 0.009345349999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6040,
+    "output_tokens": 600,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0100996
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5854,
+    "output_tokens": 663,
+    "cached_tokens": 5632,
+    "cost_usd": 0.010656099999999998
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5840,
+    "output_tokens": 650,
+    "cached_tokens": 3584,
+    "cost_usd": 0.0136752
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5871,
+    "output_tokens": 599,
+    "cached_tokens": 5632,
+    "cost_usd": 0.009789850000000001
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5844,
+    "output_tokens": 620,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0100366
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6246,
+    "output_tokens": 447,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0083181
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5892,
+    "output_tokens": 597,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0097986
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5847,
+    "output_tokens": 571,
+    "cached_tokens": 5632,
+    "cost_usd": 0.009355849999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5855,
+    "output_tokens": 549,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00906185
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5839,
+    "output_tokens": 550,
+    "cached_tokens": 3584,
+    "cost_usd": 0.01227345
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5946,
+    "output_tokens": 613,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0101171
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6103,
+    "output_tokens": 621,
+    "cached_tokens": 5632,
+    "cost_usd": 0.01050385
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5844,
+    "output_tokens": 665,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0106666
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5855,
+    "output_tokens": 653,
+    "cached_tokens": 5632,
+    "cost_usd": 0.01051785
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5844,
+    "output_tokens": 551,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0090706
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6156,
+    "output_tokens": 715,
+    "cached_tokens": 5632,
+    "cost_usd": 0.011912599999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6170,
+    "output_tokens": 646,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0109711
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6029,
+    "output_tokens": 653,
+    "cached_tokens": 5632,
+    "cost_usd": 0.010822350000000001
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6129,
+    "output_tokens": 748,
+    "cached_tokens": 5632,
+    "cost_usd": 0.012327349999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5864,
+    "output_tokens": 593,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0096936
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6341,
+    "output_tokens": 693,
+    "cached_tokens": 5632,
+    "cost_usd": 0.01192835
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5852,
+    "output_tokens": 598,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0097426
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5846,
+    "output_tokens": 604,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0098161
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5860,
+    "output_tokens": 670,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0107646
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5864,
+    "output_tokens": 796,
+    "cached_tokens": 5632,
+    "cost_usd": 0.012535600000000001
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5846,
+    "output_tokens": 753,
+    "cached_tokens": 5632,
+    "cost_usd": 0.011902099999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5858,
+    "output_tokens": 676,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0108451
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5836,
+    "output_tokens": 802,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0125706
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6022,
+    "output_tokens": 825,
+    "cached_tokens": 0,
+    "cost_usd": 0.022088499999999997
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5966,
+    "output_tokens": 780,
+    "cached_tokens": 5632,
+    "cost_usd": 0.012490099999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5849,
+    "output_tokens": 738,
+    "cached_tokens": 5632,
+    "cost_usd": 0.01169735
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5846,
+    "output_tokens": 938,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0144921
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5845,
+    "output_tokens": 604,
+    "cached_tokens": 5632,
+    "cost_usd": 0.00981435
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5879,
+    "output_tokens": 779,
+    "cached_tokens": 0,
+    "cost_usd": 0.021194249999999998
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5846,
+    "output_tokens": 811,
+    "cached_tokens": 5632,
+    "cost_usd": 0.012714099999999999
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5845,
+    "output_tokens": 859,
+    "cached_tokens": 0,
+    "cost_usd": 0.022254749999999997
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5851,
+    "output_tokens": 803,
+    "cached_tokens": 5632,
+    "cost_usd": 0.01261085
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6764,
+    "output_tokens": 832,
+    "cached_tokens": 5632,
+    "cost_usd": 0.014614599999999998
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5887,
+    "output_tokens": 894,
+    "cached_tokens": 5632,
+    "cost_usd": 0.013947850000000001
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5883,
+    "output_tokens": 907,
+    "cached_tokens": 0,
+    "cost_usd": 0.02299325
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5863,
+    "output_tokens": 1022,
+    "cached_tokens": 5632,
+    "cost_usd": 0.01569785
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6341,
+    "output_tokens": 1092,
+    "cached_tokens": 5632,
+    "cost_usd": 0.01751435
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5849,
+    "output_tokens": 1039,
+    "cached_tokens": 5632,
+    "cost_usd": 0.01591135
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6118,
+    "output_tokens": 1126,
+    "cached_tokens": 0,
+    "cost_usd": 0.0264705
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6103,
+    "output_tokens": 901,
+    "cached_tokens": 5632,
+    "cost_usd": 0.01442385
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5846,
+    "output_tokens": 1013,
+    "cached_tokens": 5632,
+    "cost_usd": 0.0155421
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5859,
+    "output_tokens": 934,
+    "cached_tokens": 5632,
+    "cost_usd": 0.01445885
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6332,
+    "output_tokens": 1526,
+    "cached_tokens": 3584,
+    "cost_usd": 0.0268002
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 6127,
+    "output_tokens": 1391,
+    "cached_tokens": 5632,
+    "cost_usd": 0.02132585
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "scouting",
+    "input_tokens": 5860,
+    "output_tokens": 1876,
+    "cached_tokens": 5632,
+    "cost_usd": 0.027648600000000002
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 1790,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 8.950000000000001e-05
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 91,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 4.5500000000000005e-06
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 4166,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00020830000000000002
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 4941,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00024705
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 1986,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 9.93e-05
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 6461,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00032305
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 12614,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0006307000000000001
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 4305,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00021525
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 7757,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00038785
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 8309,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00041545000000000004
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 1401,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 7.005e-05
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 66000,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0033000000000000004
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 10260,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.000513
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 3624,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0001812
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 1126,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 5.6300000000000006e-05
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 46507,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00232535
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 2252,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00011260000000000001
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 20503,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00102515
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 1427,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 7.135000000000001e-05
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 2905,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00014525
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 7727,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00038635000000000004
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 3596,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0001798
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 5297,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00026485
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 6365,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00031825
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 4926,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0002463
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 47692,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0023846
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 4040,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00020200000000000003
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 2992,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0001496
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 3704,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0001852
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 1662,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 8.310000000000001e-05
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 6713,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00033565000000000005
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 3795,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00018975000000000003
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 4364,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0002182
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 5129,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00025645
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 1226,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 6.130000000000001e-05
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 2111,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00010555
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 22187,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00110935
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 2049,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00010245000000000001
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 3183,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00015915000000000002
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 2826,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0001413
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 4933,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00024665
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 4319,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00021595000000000002
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 18117,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0009058500000000001
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 8168,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0004084
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 2271,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00011355000000000001
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 268,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 1.34e-05
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 4988,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00024940000000000004
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 20091,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00100455
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 3605,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00018025000000000002
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 27026,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0013513000000000002
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 1975,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 9.875000000000002e-05
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 2101,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00010505
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 4670,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00023349999999999998
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 6396,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0003198
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 2503,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00012515
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 4279,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00021395
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 5096,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0002548
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 13655,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0006827500000000001
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 5244,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00026220000000000003
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 3535,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00017675000000000001
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 13186,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0006593
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 7231,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00036155
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 2715,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00013575
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 4180,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.00020899999999999998
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 1758,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 8.790000000000001e-05
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 106970,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0053485
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 4894,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0002447
+  },
+  {
+    "provider": "jina",
+    "model": "reader",
+    "step": "loading",
+    "input_tokens": 5932,
+    "output_tokens": 0,
+    "cached_tokens": 0,
+    "cost_usd": 0.0002966
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 50649,
+    "output_tokens": 1437,
+    "cached_tokens": 0,
+    "cost_usd": 0.28917
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 32054,
+    "output_tokens": 1773,
+    "cached_tokens": 0,
+    "cost_usd": 0.204595
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 40690,
+    "output_tokens": 1542,
+    "cached_tokens": 0,
+    "cost_usd": 0.242
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 175595,
+    "output_tokens": 1427,
+    "cached_tokens": 0,
+    "cost_usd": 0.91365
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 56006,
+    "output_tokens": 1621,
+    "cached_tokens": 0,
+    "cost_usd": 0.320555
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 62074,
+    "output_tokens": 1592,
+    "cached_tokens": 0,
+    "cost_usd": 0.35017
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 28218,
+    "output_tokens": 1512,
+    "cached_tokens": 0,
+    "cost_usd": 0.17889
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 42575,
+    "output_tokens": 1747,
+    "cached_tokens": 0,
+    "cost_usd": 0.25655
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 46901,
+    "output_tokens": 1509,
+    "cached_tokens": 0,
+    "cost_usd": 0.27222999999999997
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 36771,
+    "output_tokens": 1803,
+    "cached_tokens": 0,
+    "cost_usd": 0.22893
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 47027,
+    "output_tokens": 1766,
+    "cached_tokens": 0,
+    "cost_usd": 0.279285
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 45610,
+    "output_tokens": 1595,
+    "cached_tokens": 0,
+    "cost_usd": 0.26792499999999997
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 101104,
+    "output_tokens": 1714,
+    "cached_tokens": 0,
+    "cost_usd": 0.54837
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 44740,
+    "output_tokens": 1782,
+    "cached_tokens": 0,
+    "cost_usd": 0.26825
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 225961,
+    "output_tokens": 1605,
+    "cached_tokens": 0,
+    "cost_usd": 1.16993
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 72784,
+    "output_tokens": 1783,
+    "cached_tokens": 0,
+    "cost_usd": 0.40849500000000005
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 60889,
+    "output_tokens": 1839,
+    "cached_tokens": 0,
+    "cost_usd": 0.35041999999999995
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 40207,
+    "output_tokens": 1916,
+    "cached_tokens": 0,
+    "cost_usd": 0.248935
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 47274,
+    "output_tokens": 1757,
+    "cached_tokens": 0,
+    "cost_usd": 0.28029499999999996
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 128644,
+    "output_tokens": 1772,
+    "cached_tokens": 0,
+    "cost_usd": 0.68752
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 80817,
+    "output_tokens": 1992,
+    "cached_tokens": 0,
+    "cost_usd": 0.45388500000000004
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 64988,
+    "output_tokens": 2059,
+    "cached_tokens": 0,
+    "cost_usd": 0.376415
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 44590,
+    "output_tokens": 2317,
+    "cached_tokens": 0,
+    "cost_usd": 0.280875
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 89809,
+    "output_tokens": 1973,
+    "cached_tokens": 0,
+    "cost_usd": 0.49837000000000004
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 84082,
+    "output_tokens": 2147,
+    "cached_tokens": 0,
+    "cost_usd": 0.474085
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 102280,
+    "output_tokens": 2245,
+    "cached_tokens": 0,
+    "cost_usd": 0.567525
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 83154,
+    "output_tokens": 2017,
+    "cached_tokens": 0,
+    "cost_usd": 0.466195
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 74184,
+    "output_tokens": 1982,
+    "cached_tokens": 0,
+    "cost_usd": 0.42047
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 55468,
+    "output_tokens": 2277,
+    "cached_tokens": 0,
+    "cost_usd": 0.33426500000000003
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 62846,
+    "output_tokens": 1404,
+    "cached_tokens": 0,
+    "cost_usd": 0.34933000000000003
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 33803,
+    "output_tokens": 1285,
+    "cached_tokens": 0,
+    "cost_usd": 0.20113999999999999
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 33069,
+    "output_tokens": 1582,
+    "cached_tokens": 0,
+    "cost_usd": 0.20489500000000002
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 43108,
+    "output_tokens": 1415,
+    "cached_tokens": 0,
+    "cost_usd": 0.250915
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 85897,
+    "output_tokens": 1627,
+    "cached_tokens": 0,
+    "cost_usd": 0.47016
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 31555,
+    "output_tokens": 1481,
+    "cached_tokens": 0,
+    "cost_usd": 0.1948
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 34878,
+    "output_tokens": 1614,
+    "cached_tokens": 0,
+    "cost_usd": 0.21474
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 38713,
+    "output_tokens": 1656,
+    "cached_tokens": 0,
+    "cost_usd": 0.23496499999999998
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 37081,
+    "output_tokens": 1606,
+    "cached_tokens": 0,
+    "cost_usd": 0.225555
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 146771,
+    "output_tokens": 1582,
+    "cached_tokens": 0,
+    "cost_usd": 0.773405
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 79581,
+    "output_tokens": 1577,
+    "cached_tokens": 0,
+    "cost_usd": 0.43733
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 29133,
+    "output_tokens": 1608,
+    "cached_tokens": 0,
+    "cost_usd": 0.185865
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 77973,
+    "output_tokens": 1666,
+    "cached_tokens": 0,
+    "cost_usd": 0.43151500000000004
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 44948,
+    "output_tokens": 1739,
+    "cached_tokens": 0,
+    "cost_usd": 0.268215
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 44993,
+    "output_tokens": 1537,
+    "cached_tokens": 0,
+    "cost_usd": 0.26339
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 33703,
+    "output_tokens": 1872,
+    "cached_tokens": 0,
+    "cost_usd": 0.21531499999999998
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 45405,
+    "output_tokens": 1628,
+    "cached_tokens": 0,
+    "cost_usd": 0.267725
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 54422,
+    "output_tokens": 1751,
+    "cached_tokens": 0,
+    "cost_usd": 0.31588499999999997
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 40972,
+    "output_tokens": 1546,
+    "cached_tokens": 0,
+    "cost_usd": 0.24351
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 45169,
+    "output_tokens": 1899,
+    "cached_tokens": 0,
+    "cost_usd": 0.27332
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 44331,
+    "output_tokens": 1818,
+    "cached_tokens": 0,
+    "cost_usd": 0.26710500000000004
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 44137,
+    "output_tokens": 1883,
+    "cached_tokens": 0,
+    "cost_usd": 0.26776
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 60702,
+    "output_tokens": 1809,
+    "cached_tokens": 0,
+    "cost_usd": 0.348735
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 53430,
+    "output_tokens": 1970,
+    "cached_tokens": 0,
+    "cost_usd": 0.3164
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 57433,
+    "output_tokens": 1824,
+    "cached_tokens": 0,
+    "cost_usd": 0.332765
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 35575,
+    "output_tokens": 1982,
+    "cached_tokens": 0,
+    "cost_usd": 0.227425
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 70619,
+    "output_tokens": 1801,
+    "cached_tokens": 0,
+    "cost_usd": 0.39812
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 103490,
+    "output_tokens": 1902,
+    "cached_tokens": 0,
+    "cost_usd": 0.565
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 40734,
+    "output_tokens": 2124,
+    "cached_tokens": 0,
+    "cost_usd": 0.25677
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 41195,
+    "output_tokens": 2110,
+    "cached_tokens": 0,
+    "cost_usd": 0.25872500000000004
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 32593,
+    "output_tokens": 1468,
+    "cached_tokens": 0,
+    "cost_usd": 0.19966499999999998
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 46194,
+    "output_tokens": 1588,
+    "cached_tokens": 0,
+    "cost_usd": 0.27067
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 42095,
+    "output_tokens": 1412,
+    "cached_tokens": 0,
+    "cost_usd": 0.245775
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 44891,
+    "output_tokens": 1533,
+    "cached_tokens": 0,
+    "cost_usd": 0.26278
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 35148,
+    "output_tokens": 1683,
+    "cached_tokens": 0,
+    "cost_usd": 0.217815
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 47137,
+    "output_tokens": 1469,
+    "cached_tokens": 0,
+    "cost_usd": 0.27241
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 52910,
+    "output_tokens": 1415,
+    "cached_tokens": 0,
+    "cost_usd": 0.299925
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 38483,
+    "output_tokens": 1689,
+    "cached_tokens": 0,
+    "cost_usd": 0.23464000000000002
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 47084,
+    "output_tokens": 1738,
+    "cached_tokens": 0,
+    "cost_usd": 0.27887
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 42035,
+    "output_tokens": 1602,
+    "cached_tokens": 0,
+    "cost_usd": 0.250225
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 79810,
+    "output_tokens": 1817,
+    "cached_tokens": 0,
+    "cost_usd": 0.444475
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 40884,
+    "output_tokens": 1502,
+    "cached_tokens": 0,
+    "cost_usd": 0.24197
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 84236,
+    "output_tokens": 1698,
+    "cached_tokens": 0,
+    "cost_usd": 0.46363
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 36886,
+    "output_tokens": 1738,
+    "cached_tokens": 0,
+    "cost_usd": 0.22788000000000003
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 61189,
+    "output_tokens": 1669,
+    "cached_tokens": 0,
+    "cost_usd": 0.34767000000000003
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 55067,
+    "output_tokens": 1565,
+    "cached_tokens": 0,
+    "cost_usd": 0.31446
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 93449,
+    "output_tokens": 1738,
+    "cached_tokens": 0,
+    "cost_usd": 0.510695
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 74030,
+    "output_tokens": 1609,
+    "cached_tokens": 0,
+    "cost_usd": 0.410375
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 55852,
+    "output_tokens": 1705,
+    "cached_tokens": 0,
+    "cost_usd": 0.321885
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 73442,
+    "output_tokens": 1774,
+    "cached_tokens": 0,
+    "cost_usd": 0.41156
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 89695,
+    "output_tokens": 1871,
+    "cached_tokens": 0,
+    "cost_usd": 0.49524999999999997
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 49996,
+    "output_tokens": 1776,
+    "cached_tokens": 0,
+    "cost_usd": 0.29438
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 64147,
+    "output_tokens": 1948,
+    "cached_tokens": 0,
+    "cost_usd": 0.369435
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 41033,
+    "output_tokens": 2011,
+    "cached_tokens": 0,
+    "cost_usd": 0.25544
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 20706,
+    "output_tokens": 1716,
+    "cached_tokens": 0,
+    "cost_usd": 0.14643
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 107695,
+    "output_tokens": 1881,
+    "cached_tokens": 0,
+    "cost_usd": 0.5855
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 40139,
+    "output_tokens": 2159,
+    "cached_tokens": 0,
+    "cost_usd": 0.25467
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 32694,
+    "output_tokens": 1815,
+    "cached_tokens": 0,
+    "cost_usd": 0.208845
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 107129,
+    "output_tokens": 2474,
+    "cached_tokens": 0,
+    "cost_usd": 0.597495
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 142536,
+    "output_tokens": 2467,
+    "cached_tokens": 0,
+    "cost_usd": 0.774355
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 48214,
+    "output_tokens": 1372,
+    "cached_tokens": 0,
+    "cost_usd": 0.27537
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 92317,
+    "output_tokens": 1370,
+    "cached_tokens": 0,
+    "cost_usd": 0.49583499999999997
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 34836,
+    "output_tokens": 1626,
+    "cached_tokens": 0,
+    "cost_usd": 0.21483
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 40425,
+    "output_tokens": 1329,
+    "cached_tokens": 0,
+    "cost_usd": 0.23535
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 43558,
+    "output_tokens": 1668,
+    "cached_tokens": 0,
+    "cost_usd": 0.25949
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 45328,
+    "output_tokens": 1813,
+    "cached_tokens": 0,
+    "cost_usd": 0.271965
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 51430,
+    "output_tokens": 1516,
+    "cached_tokens": 0,
+    "cost_usd": 0.29505
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 76664,
+    "output_tokens": 1571,
+    "cached_tokens": 0,
+    "cost_usd": 0.422595
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 117198,
+    "output_tokens": 1564,
+    "cached_tokens": 0,
+    "cost_usd": 0.62509
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 58559,
+    "output_tokens": 1873,
+    "cached_tokens": 0,
+    "cost_usd": 0.33962000000000003
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 87394,
+    "output_tokens": 1962,
+    "cached_tokens": 0,
+    "cost_usd": 0.48601999999999995
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 76268,
+    "output_tokens": 1710,
+    "cached_tokens": 0,
+    "cost_usd": 0.42409
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 172273,
+    "output_tokens": 1721,
+    "cached_tokens": 0,
+    "cost_usd": 0.90439
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 102561,
+    "output_tokens": 1931,
+    "cached_tokens": 0,
+    "cost_usd": 0.5610799999999999
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 94920,
+    "output_tokens": 2450,
+    "cached_tokens": 0,
+    "cost_usd": 0.53585
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 111050,
+    "output_tokens": 2296,
+    "cached_tokens": 0,
+    "cost_usd": 0.61265
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 132891,
+    "output_tokens": 2448,
+    "cached_tokens": 0,
+    "cost_usd": 0.725655
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 68043,
+    "output_tokens": 1019,
+    "cached_tokens": 0,
+    "cost_usd": 0.36569000000000007
+  },
+  {
+    "provider": "anthropic",
+    "model": "claude-opus-4-5-20251101",
+    "step": "curation",
+    "input_tokens": 106020,
+    "output_tokens": 2416,
+    "cached_tokens": 0,
+    "cost_usd": 0.5905
+  }
+]

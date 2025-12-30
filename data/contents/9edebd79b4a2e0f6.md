@@ -11,25 +11,21 @@ The provided web page describes the **Model Context Protocol (MCP)**, which is a
 
 **Key aspects of MCP mentioned on the page:**
 
-*   **Purpose:** An MCP server exposes **tools** that a model can call during a conversation, returning results with specified parameters. It also allows returning metadata, such as inline HTML for rendering interfaces via the Apps SDK.
+*   **Purpose:** An MCP server exposes **tools** that a model can call during a conversation, returning results with specified parameters. It also allows returning metadata, such as inline HTML for rendering interfaces in the Apps SDK.
 *   **Role with Apps SDK:** MCP is the backbone that keeps the server, model, and UI in sync, allowing ChatGPT to reason about your app similarly to built-in tools by standardizing wire format, authentication, and metadata.
-*   **Protocol Building Blocks:** A minimal MCP server implements:
-    1.  **List tools:** Advertises supported tools, including their JSON Schema input/output contracts.
-    2.  **Call tools:** Executes actions requested by the model and returns structured content.
-    3.  **Return components:** Optionally points to an embedded resource representing the interface to render in the client.
+*   **Protocol Building Blocks:**
+    1.  **List tools:** The server advertises supported tools, including their JSON Schema input/output contracts.
+    2.  **Call tools:** The model sends a `call_tool` request, the server executes the action, and returns structured content.
+    3.  **Return components:** Tools can optionally point to an embedded resource representing the interface to render in the client.
 *   **Benefits of using MCP:** Discovery integration, conversation awareness (state flows through the conversation), multiclient support (works across web and mobile), and extensible authentication.
 
 **Regarding your specific query terms:**
 
-The page explicitly mentions **MCP Server** and **tool use** (via tool calling). It also mentions **function calling** implicitly through the description of tool calling with JSON Schema contracts.
+The page focuses on **MCP servers**, **tool use**, **function calling** (implied by "Call tools" and structured content), and **structured outputs**. It also mentions **SDKs** (Official SDKs: Python SDK and TypeScript).
 
-However, the page **does not** contain information about: `agent_infrastructure`, `deep research`, `agent memory`, `agentic memory`, `context compression`, `agent frameworks`, `LangChain`, `LlamaIndex`, `OpenAI Agents SDK`, `Anthropic Agents SDK`, `Google SDK`, `structured outputs` (beyond the tool contract), `agent orchestration`, `agent evaluations`, `LLM reasoning trace evaluation`, `prompt engineering`, `context engineering`, `long context`, `supervised fine-tuning`, or `reinforcement learning`.
+However, the page **does not mention or discuss** the following terms from your query: *deep research, agent memory, agentic memory, context compression, agent frameworks, LangChain, LlamaIndex, OpenAI Agents SDK, Anthropic Agents SDK, Google SDK, agent orchestration, agent evaluations, LLM reasoning trace evaluation, prompt engineering, context engineering, long context, supervised fine-tuning, or reinforcement learning.*
 
-**Summary based on the query:**
-
-The page explains that **MCP (Model Context Protocol)** is a specification for connecting LLM clients to external tools, enabling **tool use** via a server that advertises tools and handles `call_tool` requests. It is the foundation for the Apps SDK.
-
-**No answer found** for the majority of the specific agent infrastructure and advanced LLM training/engineering terms listed in your
+**Summary relative to the query:** The page explains what the **MCP server** is and how it facilitates **tool use** and **structured outputs** within the context of the Apps SDK, but it does not cover the majority of the advanced agent infrastructure concepts listed in your query.
 
 ---
 
@@ -146,11 +142,11 @@ Clear
 * [Reference](https://developers.openai.com/apps-sdk/reference)
 * [All posts](https://developers.openai.com/blog)
 ### Recent
+* [OpenAI for Developers in 2025](https://developers.openai.com/blog/openai-for-developers-2025)
 * [Updates for developers building with voice](https://developers.openai.com/blog/updates-audio-models)
 * [What makes a great ChatGPT app](https://developers.openai.com/blog/what-makes-a-great-chatgpt-app)
 * [Using Codex for education at Dagster Labs](https://developers.openai.com/blog/codex-for-documentation-dagster)
 * [How Codex ran OpenAI DevDay 2025](https://developers.openai.com/blog/codex-at-devday)
-* [Why we built the Responses API](https://developers.openai.com/blog/responses-api)
 Search⌘K
 Copy PageMore page actions
 Copy PageMore page actions
