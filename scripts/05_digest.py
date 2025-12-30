@@ -21,6 +21,8 @@ import markdown
 from data import ContentManager
 manager = ContentManager(base_path="data")
 
+from components.cost_tracker import get_tracker
+
 from components.email.gmail_sender import (
     GmailSender, 
     format_top_items, 
@@ -88,12 +90,16 @@ top_section = format_top_items(df_recent, n=KEEP)
 top_html = markdown.markdown(top_section)
 remaining_section = format_remaining_table(df_recent, skip_top=KEEP)
 
+cost_html = get_tracker().format_for_email()
+
 # Combine into full HTML digest
 digest_body = f"""
 <html>
 <body>
 <h1>🔬 Research Digest</h1>
 <p><strong>Date:</strong> {pd.Timestamp.now().strftime('%B %d, %Y')}</p>
+
+{cost_html}
 
 <hr>
 
