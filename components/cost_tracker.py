@@ -97,11 +97,19 @@ class CostTracker:
             cached_tokens=cache_read, cost_usd=cost,
         ))
     
-    def add_exa(self, step: str, cost_dollars):
-        """Add Exa cost (already in dollars from API response)"""
+    def add_exa(self, step: str, cost_dollars, char_count: int = 0):
+        """Add Exa cost (already in dollars from API response)
+        
+        Args:
+            step: Pipeline step name
+            cost_dollars: Cost object from Exa response
+            char_count: Total characters in results (used to estimate tokens as chars/4)
+        """
         total = cost_dollars.total if hasattr(cost_dollars, 'total') else float(cost_dollars)
+        estimated_tokens = char_count // 4  # Rough approximation: ~4 chars per token
         self.entries.append(CostEntry(
-            provider="exa", model="deep", step=step, cost_usd=total,
+            provider="exa", model="deep", step=step, 
+            input_tokens=estimated_tokens, cost_usd=total,
         ))
     
     def add_jina(self, step: str, tokens: int):
@@ -190,22 +198,39 @@ class CostTracker:
         """Load and summarize costs from current run file"""
         p = Path(path)
         if not p.exists():
-            return {"total_usd": 0, "by_provider": {}, "by_step": {}}
+            return {
+                "total_usd": 0, "total_tokens": 0,
+                "by_provider": {}, "by_step": {},
+                "tokens_by_provider": {}, "tokens_by_step": {},
+            }
         
         entries = json.loads(p.read_text())
         
-        total = sum(e["cost_usd"] for e in entries)
+        total_cost = sum(e["cost_usd"] for e in entries)
+        total_tokens = sum(e.get("input_tokens", 0) + e.get("output_tokens", 0) for e in entries)
+        
         by_provider = {}
         by_step = {}
+        tokens_by_provider = {}
+        tokens_by_step = {}
         
         for e in entries:
-            by_provider[e["provider"]] = by_provider.get(e["provider"], 0) + e["cost_usd"]
-            by_step[e["step"]] = by_step.get(e["step"], 0) + e["cost_usd"]
+            provider = e["provider"]
+            step = e["step"]
+            tokens = e.get("input_tokens", 0) + e.get("output_tokens", 0)
+            
+            by_provider[provider] = by_provider.get(provider, 0) + e["cost_usd"]
+            by_step[step] = by_step.get(step, 0) + e["cost_usd"]
+            tokens_by_provider[provider] = tokens_by_provider.get(provider, 0) + tokens
+            tokens_by_step[step] = tokens_by_step.get(step, 0) + tokens
         
         return {
-            "total_usd": round(total, 4),
+            "total_usd": round(total_cost, 4),
+            "total_tokens": total_tokens,
             "by_provider": {k: round(v, 4) for k, v in sorted(by_provider.items())},
             "by_step": {k: round(v, 4) for k, v in sorted(by_step.items())},
+            "tokens_by_provider": {k: v for k, v in sorted(tokens_by_provider.items())},
+            "tokens_by_step": {k: v for k, v in sorted(tokens_by_step.items())},
         }
     
     @staticmethod
@@ -216,26 +241,29 @@ class CostTracker:
         if s["total_usd"] == 0:
             return "<p><em>No cost data available for this run.</em></p>"
         
+        # Format with token counts in parentheses
         provider_rows = "".join(
-            f"<tr><td>{k}</td><td>${v:.4f}</td></tr>" 
+            f"<tr><td>{k}</td><td>${v:.4f} <span style='color: #666;'>({s['tokens_by_provider'].get(k, 0):,} tokens)</span></td></tr>" 
             for k, v in s["by_provider"].items()
         )
         step_rows = "".join(
-            f"<tr><td>{k}</td><td>${v:.4f}</td></tr>" 
+            f"<tr><td>{k}</td><td>${v:.4f} <span style='color: #666;'>({s['tokens_by_step'].get(k, 0):,} tokens)</span></td></tr>" 
             for k, v in s["by_step"].items()
         )
         
+        total_tokens_fmt = f"{s['total_tokens']:,}"
+        
         return f"""
-<h3>💰 Run Cost: ${s['total_usd']:.4f}</h3>
+<h3>💰 Run Cost: ${s['total_usd']:.4f} <span style="color: #666; font-weight: normal;">({total_tokens_fmt} tokens)</span></h3>
 <table style="display: inline-block; vertical-align: top; margin-right: 40px;">
   <tr><th colspan="2">By Provider</th></tr>
   {provider_rows}
-  <tr style="font-weight: bold;"><td>Total</td><td>${s['total_usd']:.4f}</td></tr>
+  <tr style="font-weight: bold;"><td>Total</td><td>${s['total_usd']:.4f} ({total_tokens_fmt} tokens)</td></tr>
 </table>
 <table style="display: inline-block; vertical-align: top;">
   <tr><th colspan="2">By Step</th></tr>
   {step_rows}
-  <tr style="font-weight: bold;"><td>Total</td><td>${s['total_usd']:.4f}</td></tr>
+  <tr style="font-weight: bold;"><td>Total</td><td>${s['total_usd']:.4f} ({total_tokens_fmt} tokens)</td></tr>
 </table>
 """
     

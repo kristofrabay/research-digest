@@ -157,8 +157,14 @@ async def search_with_exa(
             },
         )
     
-    # Track cost
-    get_tracker().add_exa("research", result.cost_dollars)
+    # Calculate total characters for token estimation
+    total_chars = sum(
+        len(r.text or "") + len(r.summary or "") + len(r.title or "")
+        for r in result.results
+    )
+    
+    # Track cost with character count for token estimation
+    get_tracker().add_exa("research", result.cost_dollars, char_count=total_chars)
     
     items = []
     for r in result.results:
