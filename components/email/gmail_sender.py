@@ -3,6 +3,7 @@ import base64
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from typing import Optional, List
+import pandas as pd
 import markdown
 from dotenv import load_dotenv
 from google.auth.transport.requests import Request
@@ -162,7 +163,8 @@ class GmailSender:
         subject: str,
         content: str,
         cc: Optional[List[str]] = None,
-        html: bool = False
+        html: bool = False,
+        markdown_mode: bool = False
     ) -> dict:
         """
         Send the same email to multiple recipients.
@@ -180,7 +182,7 @@ class GmailSender:
         results = {'success': 0, 'failed': 0, 'total': len(recipients)}
         
         for recipient in recipients:
-            if self.send_email(recipient, subject, content, cc, html):
+            if self.send_email(recipient, subject, content, cc, html, markdown_mode):
                 results['success'] += 1
             else:
                 results['failed'] += 1
@@ -204,3 +206,106 @@ def send_email(to: str, subject: str, content: str, cc: Optional[List[str]] = No
     """
     sender = GmailSender()
     return sender.send_email(to, subject, content, cc, html, markdown_mode)
+
+
+# Formatting functions
+
+def format_top_items(df, n=10):
+    """
+    Format top N items as a numbered list with full details.
+    
+    Args:
+        df: DataFrame sorted by priority (highest first)
+        n: Number of top items to format (default: 10)
+    
+    Returns:
+        str: Markdown-formatted list of top items
+    """
+    items = []
+    
+    for idx, (_, row) in enumerate(df.head(n).iterrows(), 1):
+        # Format published date (handle different formats)
+        published = str(row['published']) if pd.notna(row['published']) else 'N/A'
+        
+        item = f"""**{idx}. {row['title']}**
+
+**URL:** {row['url']}  
+**Tags:** {row['curator_tags']}  
+**Source:** {row['source']} - {published}
+
+**Takeaways:**  
+{row['curator_takeaways']}
+
+**Reason to read:**  
+{row['verdict_reasoning']}
+
+---
+"""
+        items.append(item)
+    
+    return '\n'.join(items)
+
+
+def format_remaining_table(df, skip_top=10):
+    """
+    Format remaining items as an HTML table.
+    
+    Args:
+        df: DataFrame sorted by priority
+        skip_top: Number of top items to skip (default: 10)
+    
+    Returns:
+        str: HTML-formatted table
+    """
+    if len(df) <= skip_top:
+        return ""
+    
+    # Select rows after top N
+    df_table = df.iloc[skip_top:].copy()
+    
+    # Select columns for display
+    cols = ['title', 'url', 'source', 'published', 'curator_tags', 'curator_takeaways', 'curator_summary']
+    df_display = df_table[cols].copy()
+    
+    # Shorten title for readability
+    df_display['title'] = df_display['title'].str[:80]
+    
+    # Make URL clickable
+    df_display['url'] = df_display['url'].apply(lambda x: f'<a href="{x}">Link</a>')
+    
+    # Convert to HTML table with styling
+    html_table = df_display.to_html(
+        index=False,
+        escape=False,  # Allow HTML in cells (for links)
+        border=1,
+        classes='digest-table'
+    )
+    
+    # Add some basic inline CSS for better rendering
+    styled_table = f"""
+<h2>Additional Items</h2>
+<style>
+    .digest-table {{
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }}
+    .digest-table th {{
+        background-color: #f2f2f2;
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }}
+    .digest-table td {{
+        padding: 10px;
+        border: 1px solid #ddd;
+        vertical-align: top;
+    }}
+    .digest-table tr:nth-child(even) {{
+        background-color: #f9f9f9;
+    }}
+</style>
+{html_table}
+"""
+    
+    return styled_table
