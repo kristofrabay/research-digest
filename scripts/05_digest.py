@@ -49,7 +49,7 @@ df = pd.read_csv("data/research_items.csv")
 
 
 # Filter for recently curated items
-current_time = datetime.now() - timedelta(hours=2)
+current_time = datetime.now() - timedelta(hours=4)
 base_date = current_time.strftime("%Y-%m-%d")
 base_time = current_time.strftime("%H:%M")
 
