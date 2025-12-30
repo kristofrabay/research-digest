@@ -1,6 +1,6 @@
 # Research Digest
 
-An AI-powered system that automatically discovers, curates, and synthesizes AI research from multiple sources—delivering a personalized daily or weekly digest of must-read papers, articles, and announcements.
+An AI-powered system that automatically discovers, curates, and synthesizes AI research from multiple sources—delivering a personalized daily digest of must-read papers, articles, and announcements via email.
 
 <div align="center">
   <img src="data/research_digest_logo.png" alt="Research Digest Logo" width="450"/>
@@ -12,9 +12,11 @@ Staying current with AI research is overwhelming. Between arXiv preprints, compa
 
 - **Casting a wide net** across multiple research sources
 - **Filtering intelligently** using AI reasoning to match personal interests
-- **Surfacing what matters** with summaries, key takeaways, and actionability scores
+- **Surfacing what matters** with summaries, key takeaways, and priority scores
 
 The goal: spend less time searching, more time reading what actually matters.
+
+**Runs automatically twice daily via GitHub Actions.**
 
 ---
 
@@ -40,7 +42,6 @@ The goal: spend less time searching, more time reading what actually matters.
 │   • Merge results from all sources                                          │
 │   • Deduplicate by URL (exact match)                                        │
 │   • Check against historical database (avoid reprocessing)                  │
-│   • Semantic similarity check for near-duplicates                           │
 └─────────────────────────────────────────────────────────────────────────────┘
                                    │
                                    ▼
@@ -83,34 +84,34 @@ The goal: spend less time searching, more time reading what actually matters.
 │   • Priority: overall importance for our use case                           │
 │   • Applicability: how directly usable in our workflows                     │
 │   • Novelty: new ideas vs incremental / review                              │
-│   • Technical depth: implementation detail level                            │
-│   • Credibility: source reputation, evidence quality                        │
 │                                                                             │
-│   Final verdict: must_read | worth_skimming | reference | skip              │
+│   Items with priority_score >= 8 are flagged as must-reads                  │
 └─────────────────────────────────────────────────────────────────────────────┘
                                                   │
                                                   ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                         6. STORAGE                                          │
 │                                                                             │
+│   • Update metadata index (research_items.csv)                              │
+│   • Track content locations (content_index.json)                            │
+│   • Save full content locally (data/contents/) gitignored                   │
+│   • Commit CSV + JSON to GitHub for persistence                             │
 │   • Embed: title + summary + takeaways                                      │
-│   • Store in vector database for semantic retrieval                         │
-│   • Update metadata index (CSV/SQLite)                                      │
-│   • Save full content and analysis locally                                  │
+│   • Store in vector database for semantic retrieval (todo)                  │
 └─────────────────────────────────────────────────────────────────────────────┘
                                                   │
                                                   ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                        7. DIGEST GENERATION                                 │
 │                                                                             │
-│   Filter by actionability: must_read + skim                                 │
-│   Group by topic or source                                                  │
-│   Generate formatted digest with:                                           │
+│   Filter: priority_score >= 8 from recent curation run                      │
+│   Sort by total score (applicability + novelty + priority)                  │
+│   Generate HTML digest with:                                                │
 │   • Summaries and key takeaways                                             │
 │   • Links to original sources                                               │
-│   • Relevance notes                                                         │
+│   • Score breakdown                                                         │
 │                                                                             │
-│   Deliver via: Slack, Email, Markdown file                                  │
+│   Deliver via: Email (Gmail API)                                            │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -143,9 +144,11 @@ Each provider runs in parallel with focus-area-specific prompts, ensuring broad 
 |-----------|------------|---------|
 | **Vector Database** | ChromaDB (local) | Semantic search, deduplication, retrieval |
 | **Embeddings** | Voyage AI (`voyage-3-large`) | High-quality embeddings for similarity |
-| **Content Extraction** | Jina Reader API | Web page → clean text |
+| **Content Extraction** | Jina Reader API | Web page → clean markdown |
 | **PDF Extraction** | PyMuPDF | arXiv papers → text (PDFs discarded after extraction) |
-| **Storage** | CSV + local files | Metadata index, raw content, analysis |
+| **Storage** | CSV + JSON + local files | Metadata index, content tracking, raw content |
+| **Scheduling** | GitHub Actions | Automated twice-daily pipeline runs |
+| **Delivery** | Gmail API | Email digest to configured recipients |
 
 ---
 
@@ -163,19 +166,49 @@ The system is configured to track research in:
 
 ## Output
 
-The final digest contains:
+The final digest email contains items with **priority_score ≥ 8**, sorted by total score.
 
-- **Must-read items** — High relevance, high novelty, directly applicable
-- **Worth skimming** — Relevant but incremental or tangentially useful
-- **Reference material** — Good to know exists, save for later
+Each item includes:
+- **Summary** — 2-3 paragraph overview
+- **Key takeaways** — Actionable insights tailored to the use case
+- **Scores** — Applicability, Novelty, Priority (1-10 each)
+- **Tags** — Topic categories
+- **Link** — Direct URL to the source
 
-Each item includes a summary, key takeaways tailored to the configured focus areas, and a direct link to the source.
+Items are formatted as HTML cards with the top highlights featured prominently.
+
+## Pipeline Scripts
+
+The pipeline runs sequentially via `scripts/run_pipeline.py`:
+
+| Script | Duration | Purpose |
+|--------|----------|---------|
+| `01_research.py` | ~10 min | Collect candidates from all sources |
+| `02_scouting.py` | ~5 min | Fast triage (pursue/discard) |
+| `03_load_content.py` | ~5 min | Fetch full content for pursued items |
+| `04_curation.py` | ~20 min | Deep analysis with Claude Opus |
+| `05_digest.py` | ~1 min | Generate and send email digest |
+
+Total runtime: **~30-40 minutes** depending on volume, rate limits.
+
+---
+
+## GitHub Actions
+
+The pipeline runs automatically via `.github/workflows/research-digest.yml`:
+
+- **Schedule:** Twice daily (9 AM and 4 PM CET)
+- **Manual trigger:** Available via workflow_dispatch
+- **Persistence:** Commits `research_items.csv` and `content_index.json` back to repo
+- **Secrets required:** API keys for OpenAI, Anthropic, Exa, Jina, Voyage, Gmail
+
+---
 
 ## Development
 
-The project was developed in Jupyter notebooks then converted to scripts for execution.
+The project was developed in Jupyter notebooks (`nbs/`) then converted to scripts for production.
 
-To convert notebooks to scripts:
+**Converting notebooks to scripts:**
 
 ```bash
 
@@ -192,4 +225,4 @@ sed -i '' 's|"../data|"data|g' *.py
 sed -i '' "s|append('../')|append('.')|g" *.py
 ```
 
-After that continuous testing and iteration is still done in notebooks, then scripts get updated ad hoc.
+Notebooks are kept for interactive development and debugging. Scripts are the production entrypoint.
