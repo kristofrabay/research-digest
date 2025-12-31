@@ -95,7 +95,7 @@ async def search_with_openai(
 async def search_with_anthropic(
     focus_key: str, 
     focus_description: str,
-    model: str = "claude-opus-4-5-20251101",
+    model: str = "claude-opus-4-5",
     reasoning_budget: int = 15_000
 ) -> ResearchResults:
 

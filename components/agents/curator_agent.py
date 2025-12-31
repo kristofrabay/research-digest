@@ -53,7 +53,7 @@ async def curate_item(
     source: str,
     url: str,
     content: str,
-    model: str = "claude-haiku-4-5",
+    model: str = "claude-sonnet-4-5",
     reasoning_budget: int = 20_000,
 ) -> CuratorAnalysis:
     """

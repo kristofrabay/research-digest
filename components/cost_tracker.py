@@ -12,7 +12,7 @@ PRICING = {
         "gpt-5.2": {"input": 1.75, "cached_input": 0.175, "output": 14.00},
     },
     "anthropic": {
-        "claude-opus-4-5-20251101": {
+        "claude-opus-4-5": {
             "input": 5.00,
             "cache_write_5m": 6.25,
             "cache_write_1h": 10.00,
@@ -25,6 +25,13 @@ PRICING = {
             "cache_write_1h": 2.00,
             "cache_read": 0.10,
             "output": 5.00,
+        },
+        "claude-sonnet-4-5": {
+            "input": 3.00,
+            "cache_write_5m": 3.75,
+            "cache_write_1h": 6.00,
+            "cache_read": 0.30,
+            "output": 15.00,
         },
     },
     "jina": {
@@ -86,7 +93,7 @@ class CostTracker:
         if cache_creation > 0 and cache_5m == 0 and cache_1h == 0:
             cache_5m = cache_creation
         
-        pricing = PRICING["anthropic"].get(model, PRICING["anthropic"]["claude-opus-4-5-20251101"])
+        pricing = PRICING["anthropic"].get(model, PRICING["anthropic"]["claude-opus-4-5"])
         
         # Calculate cost with proper cache pricing
         base_input = input_tokens - cache_read  # Non-cached input
