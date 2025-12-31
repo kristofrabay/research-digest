@@ -2,7 +2,7 @@ name: Research Digest Pipeline
 
 on:
   schedule:
-    - cron: '0 18 * * 1,3,5'  # 7pm CET (6pm UTC) on Mon, Wed, Fri
+    - cron: '0 9 * * *'  # 10am CET (9am UTC) every day
   workflow_dispatch:  # manual trigger
 
 permissions:
