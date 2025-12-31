@@ -2329,5 +2329,14 @@
     "output_tokens": 3080,
     "cached_tokens": 0,
     "cost_usd": 0.253242
+  },
+  {
+    "provider": "openai",
+    "model": "gpt-5.2",
+    "step": "curation",
+    "input_tokens": 15588,
+    "output_tokens": 4137,
+    "cached_tokens": 0,
+    "cost_usd": 0.085197
   }
 ]

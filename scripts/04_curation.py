@@ -116,7 +116,13 @@ while attempt < MAX_ATTEMPTS:
 
 
     # 3. RUN CURATION
-    analyses = asyncio.run(curate_batch(items, batch_size=30))
+    analyses = asyncio.run(
+        curate_batch(
+            items, 
+            provider="openai",
+            batch_size=100
+        )
+    )
 
     # 4. UPDATE DF
     url_to_analysis = {items[i]["url"]: analyses[i] for i in range(len(analyses))}
