@@ -52,7 +52,7 @@ df = pd.read_csv("data/research_items.csv")
 # In[3]:
 
 
-MAX_ATTEMPTS = 5
+MAX_ATTEMPTS = 10
 attempt = 0
 
 while attempt < MAX_ATTEMPTS:
