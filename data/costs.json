@@ -101,5 +101,34 @@
       "scouting": 760733
     },
     "run": "2025-12-31T21:15:37.613101"
+  },
+  {
+    "total_usd": 51.853,
+    "total_tokens": 15815602,
+    "by_provider": {
+      "anthropic": 8.4491,
+      "exa": 0.425,
+      "jina": 0.0169,
+      "openai": 42.962
+    },
+    "by_step": {
+      "curation": 33.3451,
+      "loading": 0.0169,
+      "research": 11.064,
+      "scouting": 7.4271
+    },
+    "tokens_by_provider": {
+      "anthropic": 1618841,
+      "exa": 1084538,
+      "jina": 337081,
+      "openai": 12775142
+    },
+    "tokens_by_step": {
+      "curation": 8064737,
+      "loading": 337081,
+      "research": 3273659,
+      "scouting": 4140125
+    },
+    "run": "2026-01-01T10:27:24.138713"
   }
 ]
