@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from components.prompts.research_agents import FOCUS_AREAS
 
 # --- Use Case Context ---
@@ -34,6 +34,7 @@ FOCUS_AREAS_FORMATTED = "\n".join([f"  - {k.replace('_', ' ').title()}: {v}" for
 # --- System Prompt ---
 def get_scout_system_prompt() -> str:
     today = datetime.now().strftime("%A, %B %d, %Y")
+    one_month_ago = (datetime.now() - timedelta(days=30)).strftime("%A, %B %d, %Y")
     
     return f"""<context>
 Today's date is {today}.
@@ -75,6 +76,8 @@ Ask yourself three questions:
    - Is this fresh or does it rehash known material?
    - Is it substantive or just marketing/announcements?
    - Does the source have credibility (top labs, established researchers, quality blogs)?
+
+Important to note our target date range is between {one_month_ago} and today, {today}. If good content is found outside of this range, you should still pursue it, however we're aiming to cover content within the past month, as this process is run daily.
 </decision_framework>
 
 <decision_rules>
@@ -113,7 +116,10 @@ def get_scout_user_prompt(
     published_date: str,
 ) -> str:
     """Generate the user message for a single item to scout."""
-    return f"""Evaluate this research item:
+    today = datetime.now().strftime("%A, %B %d, %Y")
+    one_month_ago = (datetime.now() - timedelta(days=30)).strftime("%A, %B %d, %Y")
+
+    return f"""Remember, our target date range is between {one_month_ago} and today, {today}. Evaluate this research item:
 
 <item>
 <title>{title}</title>
@@ -125,5 +131,5 @@ def get_scout_user_prompt(
 </summary>
 </item>
 
-Based on the title, source, URL, and summary: should we fetch the full content for deeper analysis?
+Based on the title, source, URL, published date, and summary: should we fetch the full content for deeper analysis?
 """

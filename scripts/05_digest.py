@@ -64,7 +64,7 @@ df_recent = df[
     &
     (~df['curator_summary'].str.startswith("ERROR", na=False))
     &
-    (df['priority_score'] >= 8.0)
+    (df['priority_score'] >= 7.0)
 ].copy()
 
 # Sort by sum of scores (descending)

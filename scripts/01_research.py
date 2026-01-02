@@ -131,8 +131,9 @@ logger.info(f"Total in DB: {result['total_after']}")
 # Retry logic for arXiv API with decreasing keyword results
 max_cats = 3000
 max_kws = 150
+last_n_days = 30
 retry_count = 0
-max_retries = 3
+max_retries = 5
 
 while retry_count < max_retries:
     try:
@@ -141,7 +142,7 @@ while retry_count < max_retries:
             keywords=ARXIV_KEYWORDS,
             max_results_cats=max_cats,
             max_results_kws=max_kws,
-            last_n_days=None
+            last_n_days=last_n_days
         )
         break  # Success, exit the loop
     except Exception as e:
@@ -159,7 +160,7 @@ while retry_count < max_retries:
                 keywords=ARXIV_KEYWORDS,
                 max_results_cats=max_cats,
                 max_results_kws=max_kws,
-                last_n_days=None
+                last_n_days=last_n_days
             )
 
 

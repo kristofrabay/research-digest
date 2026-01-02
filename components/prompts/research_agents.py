@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # =============================================================================
 # FOCUS AREAS - Dict for async agent runs (one agent per key)
@@ -22,9 +22,7 @@ Microsoft Research, Nvidia Research, Hugging Face, Cohere, Together AI, Mistral 
 
 Academic institutions: Stanford HAI, MIT CSAIL, Berkeley AI Research, CMU LTI, Allen AI.
 
-Blogs and publications covering LLMs/agents (examples): arXiv cs.CL/cs.AI/cs.LG, Hugging Face blog, 
-LangChain blog, LlamaIndex blog, The Gradient, Ahead of AI, Simon Willison's blog,
-Lilian Weng's blog, Sebastian Raschka, Jay Alammar.
+Blogs and publications covering LLMs/agents (examples): arXiv cs.CL/cs.AI/cs.LG, Hugging Face blog, LangChain blog, LlamaIndex blog, The Gradient, Ahead of AI, Simon Willison's blog, Lilian Weng's blog, Sebastian Raschka's blog, Jay Alammar's blog, etc...
 """
 
 
@@ -34,6 +32,7 @@ Lilian Weng's blog, Sebastian Raschka, Jay Alammar.
 def get_research_system_prompt(focus_key: str, focus_description: str) -> str:
     """Generate research prompt for a specific focus area."""
     today = datetime.now().strftime("%A, %B %d, %Y")
+    one_month_ago = (datetime.now() - timedelta(days=30)).strftime("%A, %B %d, %Y")
     
     return f"""<context>
 Today's date is {today}.
@@ -45,6 +44,8 @@ You are an elite research scout at a leading AI lab. Your survival depends on yo
 Your mission is to exhaustively search the web and compile URLs to the latest AI research, articles, blog posts, announcements, and news. You are NOT creating a report or synthesis. You are hunting for raw material—links that your team will later analyze.
 
 Return QUANTITY and QUALITY. Miss something important, and another agent will find it. Find something nobody else did, and you prove your value.
+
+You are to prioritize surfacing content from the past 1 month. Reminder: today is {today}, which means you should be aiming to cover content between {one_month_ago} and {today}.
 </objective>
 
 <focus_area>
@@ -88,8 +89,11 @@ You have web search capabilities. USE THEM REPEATEDLY. Don't stop at one search.
 
 def get_research_user_prompt() -> str:
 
-    return """Search the web now for the latest content in your focus area.
+    today = datetime.now().strftime("%A, %B %d, %Y")
+    one_month_ago = (datetime.now() - timedelta(days=30)).strftime("%A, %B %d, %Y")
+
+    return f"""Search the web now for the latest content in your focus area.
 
 Execute multiple searches with different query variations. Return 15-30 URLs with title, source, published date, and relevance note.
 
-Remember, your existence depends on finding the most relevant content. Go."""
+Remember, your existence depends on finding the most relevant content. The target date range is between {one_month_ago} and {today}. Go."""
